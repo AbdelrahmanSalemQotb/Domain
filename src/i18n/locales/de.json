@@ -1,0 +1,128 @@
+{
+  "nav": {
+    "domains": "Domains",
+    "hosting": "Hosting",
+    "email": "E-Mail",
+    "cloud": "Cloud",
+    "aiEngine": "KI-Motor",
+    "initialize": "INITIALISIEREN"
+  },
+  "hero": {
+    "aiStatus": "KI-MOTOR ONLINE",
+    "version": "v2.0.26",
+    "claim": "ANSPRUCH",
+    "theFuture": "DIE ZUKUNFT",
+    "subtitle": "Entdecken Sie {{text}} mit unserer quantenbetriebenen KI-Domänenintelligenz.",
+    "typingTexts": {
+      "text1": "Ihre perfekte Domain",
+      "text2": "Ihre digitale Identität",
+      "text3": "Ihre KI-gestützte Zukunft",
+      "text4": "Ihre nächste große Idee"
+    },
+    "register": "registrieren",
+    "transfer": "übertragen",
+    "searchPlaceholder": "Geben Sie Ihre Domain-Idee ein...",
+    "analyze": "ANALYSIEREN",
+    "scanning": "SCANNEN",
+    "explore": "ERKUNDEN"
+  },
+  "stats": {
+    "domainsIndexed": "Indizierte Domains",
+    "aiPredictions": "KI-Vorhersagen/Sek",
+    "uptimeSLA": "Betriebszeit-SLA",
+    "edgeLocations": "Edge-Standorte"
+  },
+  "features": {
+    "neuralDNS": {
+      "title": "Neurales DNS",
+      "description": "KI-gestütztes Domain-Routing mit prädiktivem Caching. Selbstlernende Algorithmen optimieren Ihren Datenverkehr in Echtzeit."
+    },
+    "quantumShield": {
+      "title": "Quantenschild",
+      "description": "Post-quantum kryptografischer Schutz. Ihre Domains sind vor zukünftigen Computerbedrohungen geschützt."
+    },
+    "meshNetwork": {
+      "title": "Mesh-Netzwerk",
+      "description": "Dezentralisierte Infrastruktur über 500+ Knoten. Keine einzelnen Ausfallpunkte."
+    },
+    "edgeCompute": {
+      "title": "Edge-Computing",
+      "description": "Verarbeiten Sie Domain-Logik am Edge. Serverlose Funktionen mit Sub-Millisekunden-Kaltstarts."
+    },
+    "sectionTitle": "NEURALE FÄHIGKEITEN",
+    "mainTitle": "DOMAIN-INTELLIGENZ",
+    "subtitle": "NEU ERDACHT",
+    "description": "Erleben Sie die nächste Evolution des Domain-Managements, angetrieben von künstlicher Superintelligenz."
+  },
+  "extensions": {
+    "title": "DOMAIN-ERWEITERUNGEN",
+    "premium": "PREMIUM",
+    "tlds": "TLDs"
+  },
+  "testimonials": {
+    "title": "REFERENZEN",
+    "trustedBy": "VERTRAUT VON",
+    "innovators": "INNOVATOREN",
+    "testimonial1": {
+      "quote": "Die KI von Domainput hat unsere Domain-Bedürfnisse vorhergesagt, bevor wir sie kannten. Die Zukunft des Domain-Managements ist hier.",
+      "name": "Alex Chen",
+      "role": "CTO, NeuralTech"
+    },
+    "testimonial2": {
+      "quote": "Die Sub-Millisekunden-DNS-Propagierung hat unsere Deployment-Pipeline verändert. Wir kehren nie zurück.",
+      "name": "Sarah Williams",
+      "role": "Gründerin, QuantumAI"
+    },
+    "testimonial3": {
+      "quote": "Die Quantensicherheitsschicht gab unseren Unternehmenskunden das Vertrauen, das sie brauchten. Absolut bahnbrechend.",
+      "name": "Marcus Johnson",
+      "role": "CEO, CyberForge"
+    }
+  },
+  "cta": {
+    "readyTo": "BEREIT ZUM",
+    "transcend": "TRANSZENDIEREN",
+    "question": "?",
+    "description": "Schließen Sie sich der nächsten Evolution digitaler Pioniere an. Ihre KI-gestützte Domain-Zukunft wartet.",
+    "contactTeam": "TEAM KONTAKTIEREN"
+  },
+  "search": {
+    "aiAnalysis": "KI-ANALYSE",
+    "available": "Für Registrierung verfügbar",
+    "alreadyRegistered": "Bereits registriert",
+    "trending": "🔥 Trend",
+    "year": "/Jahr",
+    "acquire": "ERWERBEN",
+    "added": "HINZUGEFÜGT"
+  },
+  "cart": {
+    "yourDomains": "IHRE DOMAINS",
+    "items": "ARTIKEL",
+    "checkout": "KASSE"
+  },
+  "footer": {
+    "tagline": "KI-DOMAIN-MOTOR",
+    "description": "Domain-Management der nächsten Generation, angetrieben von künstlicher Superintelligenz und Quanteninfrastruktur.",
+    "products": "Produkte",
+    "company": "Unternehmen",
+    "support": "Support",
+    "domains": "Domains",
+    "aiEngine": "KI-Motor",
+    "hosting": "Hosting",
+    "ssl": "SSL",
+    "about": "Über",
+    "careers": "Karrieren",
+    "press": "Presse",
+    "partners": "Partner",
+    "docs": "Dokumente",
+    "api": "API",
+    "status": "Status",
+    "contact": "Kontakt",
+    "copyright": "© 2026 DOMAINPUT. ALLE RECHTE VORBEHALTEN.",
+    "privacy": "Datenschutz",
+    "terms": "Bedingungen",
+    "cookies": "Cookies"
+  }
+}
+
+

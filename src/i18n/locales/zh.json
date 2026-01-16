@@ -1,0 +1,128 @@
+{
+  "nav": {
+    "domains": "域名",
+    "hosting": "托管",
+    "email": "电子邮件",
+    "cloud": "云",
+    "aiEngine": "AI引擎",
+    "initialize": "初始化"
+  },
+  "hero": {
+    "aiStatus": "AI引擎在线",
+    "version": "v2.0.26",
+    "claim": "声明",
+    "theFuture": "未来",
+    "subtitle": "通过我们的量子驱动AI域名智能发现{{text}}。",
+    "typingTexts": {
+      "text1": "您的完美域名",
+      "text2": "您的数字身份",
+      "text3": "您的AI驱动未来",
+      "text4": "您的下一个大想法"
+    },
+    "register": "注册",
+    "transfer": "转移",
+    "searchPlaceholder": "输入您的域名想法...",
+    "analyze": "分析",
+    "scanning": "扫描中",
+    "explore": "探索"
+  },
+  "stats": {
+    "domainsIndexed": "已索引域名",
+    "aiPredictions": "AI预测/秒",
+    "uptimeSLA": "正常运行时间SLA",
+    "edgeLocations": "边缘位置"
+  },
+  "features": {
+    "neuralDNS": {
+      "title": "神经DNS",
+      "description": "具有预测缓存的AI驱动域名路由。自学习算法实时优化您的流量。"
+    },
+    "quantumShield": {
+      "title": "量子盾",
+      "description": "后量子密码保护。您的域名受到保护，免受未来计算威胁。"
+    },
+    "meshNetwork": {
+      "title": "网状网络",
+      "description": "跨500+节点的去中心化基础设施。零单点故障。"
+    },
+    "edgeCompute": {
+      "title": "边缘计算",
+      "description": "在边缘处理域名逻辑。具有亚毫秒冷启动的无服务器功能。"
+    },
+    "sectionTitle": "神经能力",
+    "mainTitle": "域名智能",
+    "subtitle": "重新构想",
+    "description": "体验由人工超级智能驱动的域名管理的下一个演进。"
+  },
+  "extensions": {
+    "title": "域名扩展",
+    "premium": "高级",
+    "tlds": "TLD"
+  },
+  "testimonials": {
+    "title": "推荐",
+    "trustedBy": "受信任",
+    "innovators": "创新者",
+    "testimonial1": {
+      "quote": "Domainput的AI在我们甚至知道之前就预测了我们的域名需求。域名管理的未来就在这里。",
+      "name": "Alex Chen",
+      "role": "首席技术官，NeuralTech"
+    },
+    "testimonial2": {
+      "quote": "亚毫秒DNS传播改变了我们的部署管道。我们永远不会回头。",
+      "name": "Sarah Williams",
+      "role": "创始人，QuantumAI"
+    },
+    "testimonial3": {
+      "quote": "量子安全层给了我们的企业客户所需的信心。绝对是游戏改变者。",
+      "name": "Marcus Johnson",
+      "role": "首席执行官，CyberForge"
+    }
+  },
+  "cta": {
+    "readyTo": "准备好",
+    "transcend": "超越",
+    "question": "？",
+    "description": "加入数字先锋的下一个演进。您的AI驱动域名未来正在等待。",
+    "contactTeam": "联系团队"
+  },
+  "search": {
+    "aiAnalysis": "AI分析",
+    "available": "可用于注册",
+    "alreadyRegistered": "已注册",
+    "trending": "🔥 趋势",
+    "year": "/年",
+    "acquire": "获取",
+    "added": "已添加"
+  },
+  "cart": {
+    "yourDomains": "您的域名",
+    "items": "项目",
+    "checkout": "结账"
+  },
+  "footer": {
+    "tagline": "AI域名引擎",
+    "description": "由人工超级智能和量子基础设施驱动的下一代域名管理。",
+    "products": "产品",
+    "company": "公司",
+    "support": "支持",
+    "domains": "域名",
+    "aiEngine": "AI引擎",
+    "hosting": "托管",
+    "ssl": "SSL",
+    "about": "关于",
+    "careers": "职业",
+    "press": "新闻",
+    "partners": "合作伙伴",
+    "docs": "文档",
+    "api": "API",
+    "status": "状态",
+    "contact": "联系",
+    "copyright": "© 2026 DOMAINPUT。保留所有权利。",
+    "privacy": "隐私",
+    "terms": "条款",
+    "cookies": "Cookie"
+  }
+}
+
+

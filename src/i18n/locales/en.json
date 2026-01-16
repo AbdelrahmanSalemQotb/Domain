@@ -1,0 +1,128 @@
+{
+  "nav": {
+    "domains": "Domains",
+    "hosting": "Hosting",
+    "email": "Email",
+    "cloud": "Cloud",
+    "aiEngine": "AI Engine",
+    "initialize": "INITIALIZE"
+  },
+  "hero": {
+    "aiStatus": "AI ENGINE ONLINE",
+    "version": "v2.0.26",
+    "claim": "CLAIM",
+    "theFuture": "THE FUTURE",
+    "subtitle": "Discover {{text}} with our quantum-powered AI domain intelligence.",
+    "typingTexts": {
+      "text1": "your perfect domain",
+      "text2": "your digital identity",
+      "text3": "your AI-powered future",
+      "text4": "your next big idea"
+    },
+    "register": "register",
+    "transfer": "transfer",
+    "searchPlaceholder": "Enter your domain idea...",
+    "analyze": "ANALYZE",
+    "scanning": "SCANNING",
+    "explore": "EXPLORE"
+  },
+  "stats": {
+    "domainsIndexed": "Domains Indexed",
+    "aiPredictions": "AI Predictions/sec",
+    "uptimeSLA": "Uptime SLA",
+    "edgeLocations": "Edge Locations"
+  },
+  "features": {
+    "neuralDNS": {
+      "title": "Neural DNS",
+      "description": "AI-powered domain routing with predictive caching. Self-learning algorithms optimize your traffic in real-time."
+    },
+    "quantumShield": {
+      "title": "Quantum Shield",
+      "description": "Post-quantum cryptographic protection. Your domains are secured against future computing threats."
+    },
+    "meshNetwork": {
+      "title": "Mesh Network",
+      "description": "Decentralized infrastructure across 500+ nodes. Zero single points of failure."
+    },
+    "edgeCompute": {
+      "title": "Edge Compute",
+      "description": "Process domain logic at the edge. Serverless functions with sub-millisecond cold starts."
+    },
+    "sectionTitle": "NEURAL CAPABILITIES",
+    "mainTitle": "DOMAIN INTELLIGENCE",
+    "subtitle": "REIMAGINED",
+    "description": "Experience the next evolution of domain management, powered by artificial superintelligence."
+  },
+  "extensions": {
+    "title": "DOMAIN EXTENSIONS",
+    "premium": "PREMIUM",
+    "tlds": "TLDs"
+  },
+  "testimonials": {
+    "title": "TESTIMONIALS",
+    "trustedBy": "TRUSTED BY",
+    "innovators": "INNOVATORS",
+    "testimonial1": {
+      "quote": "Domainput's AI predicted our domain needs before we even knew them. The future of domain management is here.",
+      "name": "Alex Chen",
+      "role": "CTO, NeuralTech"
+    },
+    "testimonial2": {
+      "quote": "Sub-millisecond DNS propagation changed our deployment pipeline. We're never going back.",
+      "name": "Sarah Williams",
+      "role": "Founder, QuantumAI"
+    },
+    "testimonial3": {
+      "quote": "The quantum security layer gave our enterprise clients the confidence they needed. Absolutely game-changing.",
+      "name": "Marcus Johnson",
+      "role": "CEO, CyberForge"
+    }
+  },
+  "cta": {
+    "readyTo": "READY TO",
+    "transcend": "TRANSCEND",
+    "question": "?",
+    "description": "Join the next evolution of digital pioneers. Your AI-powered domain future awaits.",
+    "contactTeam": "CONTACT TEAM"
+  },
+  "search": {
+    "aiAnalysis": "AI ANALYSIS",
+    "available": "Available for registration",
+    "alreadyRegistered": "Already registered",
+    "trending": "🔥 Trending",
+    "year": "/year",
+    "acquire": "ACQUIRE",
+    "added": "ADDED"
+  },
+  "cart": {
+    "yourDomains": "YOUR DOMAINS",
+    "items": "ITEMS",
+    "checkout": "CHECKOUT"
+  },
+  "footer": {
+    "tagline": "AI DOMAIN ENGINE",
+    "description": "Next-generation domain management powered by artificial superintelligence and quantum infrastructure.",
+    "products": "Products",
+    "company": "Company",
+    "support": "Support",
+    "domains": "Domains",
+    "aiEngine": "AI Engine",
+    "hosting": "Hosting",
+    "ssl": "SSL",
+    "about": "About",
+    "careers": "Careers",
+    "press": "Press",
+    "partners": "Partners",
+    "docs": "Docs",
+    "api": "API",
+    "status": "Status",
+    "contact": "Contact",
+    "copyright": "© 2026 DOMAINPUT. ALL RIGHTS RESERVED.",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "cookies": "Cookies"
+  }
+}
+
+

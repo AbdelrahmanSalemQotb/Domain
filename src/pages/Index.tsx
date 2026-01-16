@@ -1,11 +1,15 @@
 import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { useTranslation } from "react-i18next";
+import { useNavigate } from "react-router-dom";
 import { 
   Search, Globe, Shield, Zap, ArrowRight, Check, Sparkles, Server, 
   Mail, ChevronDown, Rocket, Lock, BarChart3, X, ShoppingCart,
-  Star, Brain, Cpu, Network, Fingerprint, Eye, Radio, Wifi
+  Star, Brain, Cpu, Network, Fingerprint, Eye, Radio, Wifi,
+  ExternalLink, MessageCircle, ShoppingBag, ChevronLeft, ChevronRight
 } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
+import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 
 // Data Stream Effect
 const DataStreams = () => {
@@ -21,7 +25,7 @@ const DataStreams = () => {
       {streams.map((stream) => (
         <motion.div
           key={stream.id}
-          className="absolute w-px bg-gradient-to-b from-transparent via-primary to-transparent opacity-20"
+          className="absolute w-px bg-gradient-to-b from-transparent via-blue-500 to-transparent opacity-20"
           style={{ left: stream.left, height: '150px' }}
           animate={{ y: ['-150px', '100vh'] }}
           transition={{
@@ -58,7 +62,7 @@ const FloatingParticles = () => {
             height: p.size,
             left: `${p.x}%`,
             top: `${p.y}%`,
-            background: `radial-gradient(circle, hsl(${180 + Math.random() * 100} 100% 60%) 0%, transparent 70%)`,
+            background: `radial-gradient(circle, hsl(${200 + Math.random() * 30} 100% 60%) 0%, transparent 70%)`,
           }}
           animate={{
             y: [0, -100, 0],
@@ -134,7 +138,7 @@ const NeuralNetwork = () => {
           cx={`${node.x}%`}
           cy={`${node.y}%`}
           r="4"
-          fill="hsl(180 100% 50%)"
+          fill="hsl(210 100% 50%)"
           initial={{ scale: 0 }}
           animate={{ 
             scale: [1, 1.5, 1],
@@ -150,9 +154,9 @@ const NeuralNetwork = () => {
       ))}
       <defs>
         <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="hsl(180 100% 50%)" stopOpacity="0.3" />
-          <stop offset="50%" stopColor="hsl(280 100% 60%)" stopOpacity="0.6" />
-          <stop offset="100%" stopColor="hsl(180 100% 50%)" stopOpacity="0.3" />
+          <stop offset="0%" stopColor="hsl(210 100% 50%)" stopOpacity="0.3" />
+          <stop offset="50%" stopColor="hsl(220 100% 60%)" stopOpacity="0.6" />
+          <stop offset="100%" stopColor="hsl(210 100% 50%)" stopOpacity="0.3" />
         </linearGradient>
       </defs>
     </svg>
@@ -219,14 +223,60 @@ const TypingEffect = ({ texts }: { texts: string[] }) => {
   );
 };
 
+// Generate 180 domains for sale (3 pages × 60 domains)
+const generateDomainsForSale = () => {
+  const extensions = [".com", ".io", ".ai", ".dev", ".app", ".tech", ".net", ".co", ".xyz", ".org"];
+  const prefixes = [
+    "tech", "digital", "cloud", "ai", "data", "web", "app", "code", "dev", "net",
+    "smart", "fast", "secure", "pro", "max", "ultra", "prime", "elite", "vip", "gold",
+    "blue", "green", "red", "black", "white", "new", "best", "top", "super", "mega",
+    "start", "build", "create", "make", "get", "buy", "sell", "trade", "market", "shop",
+    "learn", "teach", "study", "work", "play", "game", "fun", "cool", "hot", "fire",
+    "star", "moon", "sun", "earth", "space", "time", "life", "love", "hope", "dream",
+    "power", "force", "energy", "light", "dark", "night", "day", "time", "now", "next",
+    "first", "last", "big", "small", "new", "old", "good", "best", "top", "win",
+    "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"
+  ];
+  
+  const domains: string[] = [];
+  let count = 0;
+  
+  for (const prefix of prefixes) {
+    for (const ext of extensions) {
+      if (count >= 180) break;
+      domains.push(`${prefix}${ext}`);
+      count++;
+    }
+    if (count >= 180) break;
+  }
+  
+  return domains;
+};
+
 const Index = () => {
+  const { t } = useTranslation();
+  const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
   const [activeTab, setActiveTab] = useState<"register" | "transfer">("register");
   const [showResults, setShowResults] = useState(false);
   const [cart, setCart] = useState<string[]>([]);
   const [isSearching, setIsSearching] = useState(false);
+  const [currentPage, setCurrentPage] = useState(1);
+  
+  const domainsForSale = generateDomainsForSale();
+  const domainsPerPage = 60;
+  const totalPages = Math.ceil(domainsForSale.length / domainsPerPage);
+  const startIndex = (currentPage - 1) * domainsPerPage;
+  const endIndex = startIndex + domainsPerPage;
+  const currentDomains = domainsForSale.slice(startIndex, endIndex);
 
-  const navItems = ["Domains", "Hosting", "Email", "Cloud", "AI Engine"];
+  const navItems = [
+    t("nav.domains"),
+    t("nav.hosting"),
+    t("nav.email"),
+    t("nav.cloud"),
+    t("nav.aiEngine"),
+  ];
   
   const domainResults = [
     { domain: `${searchQuery || "domainput"}.com`, available: true, price: 9.99, popular: true },
@@ -242,31 +292,31 @@ const Index = () => {
   const features = [
     {
       icon: Brain,
-      title: "Neural DNS",
-      description: "AI-powered domain routing with predictive caching. Self-learning algorithms optimize your traffic in real-time.",
+      title: t("features.neuralDNS.title"),
+      description: t("features.neuralDNS.description"),
       stats: "0.001ms",
-      color: "from-cyan-500 to-blue-500"
+      color: "from-blue-500 to-blue-600"
     },
     {
       icon: Shield,
-      title: "Quantum Shield",
-      description: "Post-quantum cryptographic protection. Your domains are secured against future computing threats.",
+      title: t("features.quantumShield.title"),
+      description: t("features.quantumShield.description"),
       stats: "256-QBit",
-      color: "from-purple-500 to-pink-500"
+      color: "from-blue-600 to-blue-700"
     },
     {
       icon: Network,
-      title: "Mesh Network",
-      description: "Decentralized infrastructure across 500+ nodes. Zero single points of failure.",
+      title: t("features.meshNetwork.title"),
+      description: t("features.meshNetwork.description"),
       stats: "500+ Nodes",
-      color: "from-green-500 to-cyan-500"
+      color: "from-blue-400 to-blue-500"
     },
     {
       icon: Cpu,
-      title: "Edge Compute",
-      description: "Process domain logic at the edge. Serverless functions with sub-millisecond cold starts.",
+      title: t("features.edgeCompute.title"),
+      description: t("features.edgeCompute.description"),
       stats: "< 1ms",
-      color: "from-orange-500 to-red-500"
+      color: "from-blue-500 to-blue-600"
     }
   ];
 
@@ -282,17 +332,17 @@ const Index = () => {
   ];
 
   const stats = [
-    { value: 2500000, label: "Domains Indexed", suffix: "+", icon: Globe },
-    { value: 150000, label: "AI Predictions/sec", suffix: "", icon: Brain },
-    { value: 99.999, label: "Uptime SLA", suffix: "%", icon: Radio },
-    { value: 500, label: "Edge Locations", suffix: "+", icon: Wifi },
+    { value: 2500000, label: t("stats.domainsIndexed"), suffix: "+", icon: Globe },
+    { value: 150000, label: t("stats.aiPredictions"), suffix: "", icon: Brain },
+    { value: 99.999, label: t("stats.uptimeSLA"), suffix: "%", icon: Radio },
+    { value: 500, label: t("stats.edgeLocations"), suffix: "+", icon: Wifi },
   ];
 
   const typingTexts = [
-    "your perfect domain",
-    "your digital identity",
-    "your AI-powered future",
-    "your next big idea"
+    t("hero.typingTexts.text1"),
+    t("hero.typingTexts.text2"),
+    t("hero.typingTexts.text3"),
+    t("hero.typingTexts.text4"),
   ];
 
   const handleSearch = () => {
@@ -316,7 +366,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen overflow-hidden scan-effect">
+    <div className="min-h-screen overflow-hidden">
       {/* Background Effects */}
       <div className="fixed inset-0 matrix-bg" />
       <DataStreams />
@@ -333,19 +383,20 @@ const Index = () => {
           <div className="flex items-center justify-between">
             {/* Logo */}
             <motion.div 
-              className="flex items-center gap-4"
+              className="flex items-center gap-3"
               whileHover={{ scale: 1.05 }}
             >
               <motion.div 
-                className="w-12 h-12 rounded-xl btn-neon-ultra flex items-center justify-center relative"
-                animate={{ boxShadow: ["0 0 20px hsl(180 100% 50% / 0.5)", "0 0 40px hsl(180 100% 50% / 0.8)", "0 0 20px hsl(180 100% 50% / 0.5)"] }}
-                transition={{ duration: 2, repeat: Infinity }}
+                className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-600 to-blue-500 flex items-center justify-center relative overflow-hidden shadow-lg"
+                whileHover={{ boxShadow: "0 0 30px hsl(210 100% 50% / 0.6)" }}
               >
-                <Globe className="w-6 h-6 text-primary-foreground relative z-10" />
+                <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent"></div>
+                <span className="text-3xl font-black text-white relative z-10 tracking-tight">D</span>
+                <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/30"></div>
               </motion.div>
               <div className="flex flex-col">
-                <span className="text-xl font-bold font-display holo-text tracking-widest">DOMAINPUT</span>
-                <span className="text-[10px] text-muted-foreground tracking-[0.3em]">AI DOMAIN ENGINE</span>
+                <span className="text-xl font-bold font-display text-foreground tracking-wide">DOMAINPUT</span>
+                <span className="text-[10px] text-muted-foreground tracking-wider">AI DOMAIN ENGINE</span>
               </div>
             </motion.div>
 
@@ -368,6 +419,7 @@ const Index = () => {
 
             {/* CTA Buttons */}
             <div className="flex items-center gap-4">
+              <LanguageSwitcher />
               {cart.length > 0 && (
                 <motion.button 
                   initial={{ scale: 0 }}
@@ -390,7 +442,7 @@ const Index = () => {
                 whileTap={{ scale: 0.95 }}
                 className="btn-neon-ultra px-8 py-3 rounded-xl text-sm font-bold text-primary-foreground font-display tracking-widest relative overflow-hidden"
               >
-                <span className="relative z-10">INITIALIZE</span>
+                <span className="relative z-10">{t("nav.initialize")}</span>
               </motion.button>
             </div>
           </div>
@@ -406,19 +458,12 @@ const Index = () => {
         />
         <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/70 to-background" />
         
-        {/* Hex Grid */}
+        {/* Hex Grid - Simplified */}
         <HexGrid />
-        
-        {/* Neural Network */}
-        <NeuralNetwork />
-        
-        {/* Perspective Grid */}
-        <div className="perspective-grid" />
 
-        {/* Glowing Orbs */}
-        <div className="absolute top-1/4 left-1/4 w-[600px] h-[600px] rounded-full bg-primary/30 blur-[200px] orb-float pointer-events-none" />
-        <div className="absolute bottom-1/3 right-1/4 w-[500px] h-[500px] rounded-full bg-secondary/20 blur-[180px] orb-float-delayed pointer-events-none" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full bg-accent/10 blur-[250px] orb-float-slow pointer-events-none" />
+        {/* Glowing Orbs - Simplified */}
+        <div className="absolute top-1/4 left-1/4 w-[400px] h-[400px] rounded-full bg-primary/20 blur-[150px] pointer-events-none" />
+        <div className="absolute bottom-1/3 right-1/4 w-[350px] h-[350px] rounded-full bg-primary/15 blur-[120px] pointer-events-none" />
 
         {/* Content */}
         <div className="relative z-10 container mx-auto px-6 text-center">
@@ -436,13 +481,13 @@ const Index = () => {
             >
               <Brain className="w-5 h-5 text-primary" />
             </motion.div>
-            <span className="text-sm text-muted-foreground font-medium tracking-wide">AI ENGINE ONLINE</span>
+            <span className="text-sm text-muted-foreground font-medium tracking-wide">{t("hero.aiStatus")}</span>
             <motion.div 
-              className="w-2 h-2 rounded-full bg-green-400"
+              className="w-2 h-2 rounded-full bg-blue-400"
               animate={{ opacity: [1, 0.3, 1] }}
               transition={{ duration: 1, repeat: Infinity }}
             />
-            <span className="cyber-tag px-3 py-1 rounded-full">v2.0.26</span>
+            <span className="cyber-tag px-3 py-1 rounded-full">{t("hero.version")}</span>
           </motion.div>
 
           {/* Main Headline */}
@@ -452,13 +497,10 @@ const Index = () => {
             transition={{ duration: 1, delay: 0.3 }}
             className="mb-8"
           >
-            <h1 className="text-6xl md:text-8xl lg:text-9xl font-bold font-display tracking-tight mb-4">
-              <span className="text-foreground block">CLAIM</span>
-              <span 
-                className="glitch-text holo-text block" 
-                data-text="THE FUTURE"
-              >
-                THE FUTURE
+            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold font-display tracking-tight mb-4">
+              <span className="text-foreground block">{t("hero.claim")}</span>
+              <span className="holo-text block">
+                {t("hero.theFuture")}
               </span>
             </h1>
           </motion.div>
@@ -470,7 +512,7 @@ const Index = () => {
             transition={{ duration: 1, delay: 0.6 }}
             className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-14 font-light"
           >
-            Discover <TypingEffect texts={typingTexts} /> with our quantum-powered AI domain intelligence.
+            {t("hero.subtitle").split("{{text}}")[0]} <TypingEffect texts={typingTexts} /> {t("hero.subtitle").split("{{text}}")[1]}
           </motion.p>
 
           {/* Tab Switcher */}
@@ -492,7 +534,7 @@ const Index = () => {
                 whileHover={{ scale: activeTab === tab ? 1 : 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
-                {tab}
+                {t(`hero.${tab}`)}
               </motion.button>
             ))}
           </motion.div>
@@ -517,7 +559,7 @@ const Index = () => {
                   value={searchQuery}
                   onChange={(e) => setSearchQuery(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && handleSearch()}
-                  placeholder="Enter your domain idea..."
+                  placeholder={t("hero.searchPlaceholder")}
                   className="w-full bg-transparent border-none outline-none text-foreground placeholder:text-muted-foreground text-xl font-light tracking-wide"
                 />
               </div>
@@ -536,11 +578,11 @@ const Index = () => {
                     >
                       <Cpu className="w-5 h-5" />
                     </motion.div>
-                    <span className="font-display tracking-widest">SCANNING</span>
+                    <span className="font-display tracking-widest">{t("hero.scanning")}</span>
                   </motion.div>
                 ) : (
                   <>
-                    <span className="font-display tracking-widest relative z-10">ANALYZE</span>
+                    <span className="font-display tracking-widest relative z-10">{t("hero.analyze")}</span>
                     <ArrowRight className="w-5 h-5 relative z-10" />
                   </>
                 )}
@@ -593,7 +635,7 @@ const Index = () => {
                         <Eye className="w-6 h-6 text-primary" />
                       </motion.div>
                       <h3 className="font-display text-xl tracking-wide">
-                        AI ANALYSIS: "<span className="holo-text">{searchQuery}</span>"
+                        {t("search.aiAnalysis")}: "<span className="holo-text">{searchQuery}</span>"
                       </h3>
                     </div>
                     <motion.button 
@@ -616,31 +658,31 @@ const Index = () => {
                         <div className="flex items-center gap-5">
                           <motion.div 
                             className={`w-12 h-12 rounded-xl flex items-center justify-center ${
-                              result.available ? 'bg-green-500/20' : 'bg-red-500/20'
+                              result.available ? 'bg-blue-500/20' : 'bg-blue-500/10'
                             }`}
                             animate={result.available ? { 
-                              boxShadow: ["0 0 0px hsl(150 100% 45% / 0)", "0 0 20px hsl(150 100% 45% / 0.5)", "0 0 0px hsl(150 100% 45% / 0)"] 
+                              boxShadow: ["0 0 0px hsl(210 100% 50% / 0)", "0 0 20px hsl(210 100% 50% / 0.5)", "0 0 0px hsl(210 100% 50% / 0)"] 
                             } : {}}
                             transition={{ duration: 2, repeat: Infinity }}
                           >
                             {result.available ? (
-                              <Check className="w-6 h-6 text-green-400" />
+                              <Check className="w-6 h-6 text-blue-400" />
                             ) : (
-                              <Lock className="w-6 h-6 text-red-400" />
+                              <Lock className="w-6 h-6 text-blue-300" />
                             )}
                           </motion.div>
                           <div>
                             <p className="font-bold text-foreground text-lg font-display tracking-wide">{result.domain}</p>
                             <p className="text-sm text-muted-foreground">
-                              {result.available ? "✓ Available for registration" : "✗ Already registered"}
-                              {result.popular && " • 🔥 Trending"}
+                              {result.available ? `✓ ${t("search.available")}` : `✗ ${t("search.alreadyRegistered")}`}
+                              {result.popular && ` • ${t("search.trending")}`}
                             </p>
                           </div>
                         </div>
                         <div className="flex items-center gap-5">
                           <div className="text-right">
                             <span className="font-display text-2xl font-bold holo-text">${result.price}</span>
-                            <p className="text-xs text-muted-foreground">/year</p>
+                            <p className="text-xs text-muted-foreground">{t("search.year")}</p>
                           </div>
                           {result.available && (
                             <motion.button
@@ -654,7 +696,7 @@ const Index = () => {
                                   : "btn-neon-ultra text-primary-foreground"
                               }`}
                             >
-                              {cart.includes(result.domain) ? "ADDED" : "ACQUIRE"}
+                              {cart.includes(result.domain) ? t("search.added") : t("search.acquire")}
                             </motion.button>
                           )}
                         </div>
@@ -679,7 +721,7 @@ const Index = () => {
                 transition={{ duration: 2, repeat: Infinity }}
                 className="flex flex-col items-center gap-2"
               >
-                <span className="text-xs text-muted-foreground font-display tracking-widest">EXPLORE</span>
+                <span className="text-xs text-muted-foreground font-display tracking-widest">{t("hero.explore")}</span>
                 <ChevronDown className="w-6 h-6 text-primary" />
               </motion.div>
             </motion.div>
@@ -737,18 +779,18 @@ const Index = () => {
           >
             <motion.span 
               className="cyber-tag px-6 py-2 rounded-full inline-block mb-6"
-              animate={{ boxShadow: ["0 0 0px hsl(180 100% 50% / 0)", "0 0 20px hsl(180 100% 50% / 0.5)", "0 0 0px hsl(180 100% 50% / 0)"] }}
+              animate={{ boxShadow: ["0 0 0px hsl(210 100% 50% / 0)", "0 0 20px hsl(210 100% 50% / 0.5)", "0 0 0px hsl(210 100% 50% / 0)"] }}
               transition={{ duration: 2, repeat: Infinity }}
             >
-              NEURAL CAPABILITIES
+              {t("features.sectionTitle")}
             </motion.span>
             <h2 className="text-5xl md:text-7xl font-bold font-display mb-6">
-              <span className="text-foreground">DOMAIN INTELLIGENCE</span>
+              <span className="text-foreground">{t("features.mainTitle")}</span>
               <br />
-              <span className="holo-text">REIMAGINED</span>
+              <span className="holo-text">{t("features.subtitle")}</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-light">
-              Experience the next evolution of domain management, powered by artificial superintelligence.
+              {t("features.description")}
             </p>
           </motion.div>
 
@@ -792,9 +834,9 @@ const Index = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <span className="cyber-tag px-6 py-2 rounded-full inline-block mb-6">DOMAIN EXTENSIONS</span>
+            <span className="cyber-tag px-6 py-2 rounded-full inline-block mb-6">{t("extensions.title")}</span>
             <h2 className="text-5xl md:text-7xl font-bold font-display mb-6">
-              <span className="text-foreground">PREMIUM</span> <span className="holo-text">TLDs</span>
+              <span className="text-foreground">{t("extensions.premium")}</span> <span className="holo-text">{t("extensions.tlds")}</span>
             </h2>
           </motion.div>
 
@@ -824,6 +866,175 @@ const Index = () => {
         </div>
       </section>
 
+      {/* Domains for Sale Section */}
+      <section className="relative py-32 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background" />
+        <HexGrid />
+        
+        <div className="relative z-10 container mx-auto px-6">
+          <motion.div 
+            initial={{ opacity: 0, y: 50 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <span className="cyber-tag px-6 py-2 rounded-full inline-block mb-6">DOMAINS FOR SALE</span>
+            <h2 className="text-5xl md:text-7xl font-bold font-display mb-6">
+              <span className="text-foreground">PREMIUM</span> <span className="holo-text">DOMAINS</span>
+            </h2>
+            <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-light">
+              Browse our collection of premium domains available for purchase
+            </p>
+          </motion.div>
+
+          {/* Domains Grid - 6 per row */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4 mb-12">
+            {currentDomains.map((domain, i) => (
+              <motion.div
+                key={domain}
+                initial={{ opacity: 0, y: 20 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true }}
+                transition={{ delay: i * 0.02 }}
+                whileHover={{ y: -5, scale: 1.02 }}
+                className="card-holo p-4 rounded-2xl relative group"
+              >
+                {/* Domain Name */}
+                <div className="mb-4">
+                  <h3 className="text-lg font-bold font-display holo-text text-center mb-4 break-all">
+                    {domain}
+                  </h3>
+                </div>
+
+                {/* Action Buttons */}
+                <div className="flex items-center justify-center gap-2 flex-wrap">
+                  {/* Afternic */}
+                  <motion.a
+                    href={`https://www.afternic.com/domain/${domain}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="relative group/btn"
+                    title="Buy on Afternic"
+                  >
+                    <div className="w-10 h-10 rounded-lg glass-ultra flex items-center justify-center border border-primary/20 hover:border-primary/50 transition-colors">
+                      <span className="text-xs font-bold text-primary">AN</span>
+                    </div>
+                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-background/95 rounded text-xs whitespace-nowrap opacity-0 group-hover/btn:opacity-100 transition-opacity pointer-events-none">
+                      Afternic
+                    </div>
+                  </motion.a>
+
+                  {/* Spaceship */}
+                  <motion.a
+                    href={`https://spaceship.com/buy/${domain}`}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="relative group/btn"
+                    title="View on Spaceship"
+                  >
+                    <div className="w-10 h-10 rounded-lg glass-ultra flex items-center justify-center border border-primary/20 hover:border-primary/50 transition-colors">
+                      <span className="text-xs font-bold text-primary">SS</span>
+                    </div>
+                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-background/95 rounded text-xs whitespace-nowrap opacity-0 group-hover/btn:opacity-100 transition-opacity pointer-events-none">
+                      Spaceship
+                    </div>
+                  </motion.a>
+
+                  {/* Buy Direct */}
+                  <motion.a
+                    href={`mailto:sales@domainput.com?subject=Buy Domain: ${domain}&body=I would like to purchase the domain: ${domain}`}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="relative group/btn"
+                    title="Buy Direct"
+                  >
+                    <div className="w-10 h-10 rounded-lg glass-ultra flex items-center justify-center border border-primary/20 hover:border-primary/50 transition-colors">
+                      <ShoppingBag className="w-4 h-4 text-primary" />
+                    </div>
+                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-background/95 rounded text-xs whitespace-nowrap opacity-0 group-hover/btn:opacity-100 transition-opacity pointer-events-none">
+                      Buy Direct
+                    </div>
+                  </motion.a>
+
+                  {/* Make Offer / Contact */}
+                  <motion.button
+                    onClick={() => navigate(`/contact?domain=${domain}`)}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="relative group/btn"
+                    title="Make Offer / Contact"
+                  >
+                    <div className="w-10 h-10 rounded-lg glass-ultra flex items-center justify-center border border-primary/20 hover:border-primary/50 transition-colors">
+                      <MessageCircle className="w-4 h-4 text-primary" />
+                    </div>
+                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-background/95 rounded text-xs whitespace-nowrap opacity-0 group-hover/btn:opacity-100 transition-opacity pointer-events-none">
+                      Make Offer
+                    </div>
+                  </motion.button>
+                </div>
+              </motion.div>
+            ))}
+          </div>
+
+          {/* Pagination */}
+          {totalPages > 1 && (
+            <div className="flex items-center justify-center gap-4 mt-12">
+              <motion.button
+                onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+                disabled={currentPage === 1}
+                whileHover={{ scale: currentPage > 1 ? 1.05 : 1 }}
+                whileTap={{ scale: currentPage > 1 ? 0.95 : 1 }}
+                className={`p-3 rounded-xl glass-ultra flex items-center gap-2 ${
+                  currentPage === 1 ? 'opacity-50 cursor-not-allowed' : 'hover:border-primary/50'
+                } transition-colors`}
+              >
+                <ChevronLeft className="w-5 h-5" />
+                <span className="font-display text-sm">Previous</span>
+              </motion.button>
+
+              <div className="flex items-center gap-2">
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
+                  <motion.button
+                    key={page}
+                    onClick={() => setCurrentPage(page)}
+                    whileHover={{ scale: 1.1 }}
+                    whileTap={{ scale: 0.95 }}
+                    className={`w-10 h-10 rounded-xl font-display text-sm transition-all ${
+                      currentPage === page
+                        ? 'btn-neon-ultra text-primary-foreground'
+                        : 'glass-ultra hover:border-primary/50'
+                    }`}
+                  >
+                    {page}
+                  </motion.button>
+                ))}
+              </div>
+
+              <motion.button
+                onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+                disabled={currentPage === totalPages}
+                whileHover={{ scale: currentPage < totalPages ? 1.05 : 1 }}
+                whileTap={{ scale: currentPage < totalPages ? 0.95 : 1 }}
+                className={`p-3 rounded-xl glass-ultra flex items-center gap-2 ${
+                  currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : 'hover:border-primary/50'
+                } transition-colors`}
+              >
+                <span className="font-display text-sm">Next</span>
+                <ChevronRight className="w-5 h-5" />
+              </motion.button>
+            </div>
+          )}
+
+          <div className="text-center mt-8 text-sm text-muted-foreground">
+            Showing {startIndex + 1}-{Math.min(endIndex, domainsForSale.length)} of {domainsForSale.length} domains
+          </div>
+        </div>
+      </section>
+
       {/* Testimonials */}
       <section className="relative py-32 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-background via-card/30 to-background" />
@@ -835,17 +1046,17 @@ const Index = () => {
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <span className="cyber-tag px-6 py-2 rounded-full inline-block mb-6">TESTIMONIALS</span>
+            <span className="cyber-tag px-6 py-2 rounded-full inline-block mb-6">{t("testimonials.title")}</span>
             <h2 className="text-5xl md:text-7xl font-bold font-display">
-              TRUSTED BY <span className="holo-text">INNOVATORS</span>
+              {t("testimonials.trustedBy")} <span className="holo-text">{t("testimonials.innovators")}</span>
             </h2>
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {[
-              { name: "Alex Chen", role: "CTO, NeuralTech", quote: "Domainput's AI predicted our domain needs before we even knew them. The future of domain management is here.", avatar: "🧠" },
-              { name: "Sarah Williams", role: "Founder, QuantumAI", quote: "Sub-millisecond DNS propagation changed our deployment pipeline. We're never going back.", avatar: "⚡" },
-              { name: "Marcus Johnson", role: "CEO, CyberForge", quote: "The quantum security layer gave our enterprise clients the confidence they needed. Absolutely game-changing.", avatar: "🛡️" },
+              { name: t("testimonials.testimonial1.name"), role: t("testimonials.testimonial1.role"), quote: t("testimonials.testimonial1.quote"), avatar: "🧠" },
+              { name: t("testimonials.testimonial2.name"), role: t("testimonials.testimonial2.role"), quote: t("testimonials.testimonial2.quote"), avatar: "⚡" },
+              { name: t("testimonials.testimonial3.name"), role: t("testimonials.testimonial3.role"), quote: t("testimonials.testimonial3.quote"), avatar: "🛡️" },
             ].map((testimonial, i) => (
               <motion.div
                 key={testimonial.name}
@@ -899,7 +1110,7 @@ const Index = () => {
             <motion.div
               className="w-24 h-24 mx-auto mb-10 rounded-3xl btn-neon-ultra flex items-center justify-center"
               animate={{ 
-                boxShadow: ["0 0 40px hsl(180 100% 50% / 0.5)", "0 0 80px hsl(180 100% 50% / 0.8)", "0 0 40px hsl(180 100% 50% / 0.5)"],
+                boxShadow: ["0 0 40px hsl(210 100% 50% / 0.5)", "0 0 80px hsl(210 100% 50% / 0.8)", "0 0 40px hsl(210 100% 50% / 0.5)"],
                 scale: [1, 1.05, 1]
               }}
               transition={{ duration: 3, repeat: Infinity }}
@@ -908,13 +1119,13 @@ const Index = () => {
             </motion.div>
             
             <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold font-display mb-8">
-              <span className="text-foreground">READY TO</span>
+              <span className="text-foreground">{t("cta.readyTo")}</span>
               <br />
-              <span className="holo-text glitch-text" data-text="TRANSCEND">TRANSCEND</span>
-              <span className="text-foreground">?</span>
+              <span className="holo-text">{t("cta.transcend")}</span>
+              <span className="text-foreground">{t("cta.question")}</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-xl mx-auto mb-14 font-light">
-              Join the next evolution of digital pioneers. Your AI-powered domain future awaits.
+              {t("cta.description")}
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
               <motion.button 
@@ -922,7 +1133,7 @@ const Index = () => {
                 whileTap={{ scale: 0.95 }}
                 className="btn-neon-ultra px-14 py-6 rounded-2xl text-primary-foreground font-bold text-xl font-display tracking-widest flex items-center gap-4 relative overflow-hidden"
               >
-                <span className="relative z-10">INITIALIZE</span>
+                <span className="relative z-10">{t("nav.initialize")}</span>
                 <Sparkles className="w-6 h-6 relative z-10" />
               </motion.button>
               <motion.button 
@@ -930,7 +1141,7 @@ const Index = () => {
                 whileTap={{ scale: 0.95 }}
                 className="glass-ultra px-14 py-6 rounded-2xl font-bold text-foreground font-display tracking-widest hover:border-primary/50 transition-colors"
               >
-                CONTACT TEAM
+                {t("cta.contactTeam")}
               </motion.button>
             </div>
           </motion.div>
@@ -945,23 +1156,25 @@ const Index = () => {
           <div className="grid md:grid-cols-4 gap-12 mb-16">
             <div>
               <div className="flex items-center gap-3 mb-6">
-                <div className="w-12 h-12 rounded-xl btn-neon-ultra flex items-center justify-center">
-                  <Globe className="w-6 h-6 text-primary-foreground" />
+                <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-600 to-blue-500 flex items-center justify-center relative overflow-hidden shadow-lg">
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent"></div>
+                  <span className="text-2xl font-black text-white relative z-10">D</span>
+                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/30"></div>
                 </div>
                 <div>
-                  <span className="text-lg font-bold font-display holo-text">DOMAINPUT</span>
-                  <p className="text-[9px] text-muted-foreground tracking-[0.2em]">AI DOMAIN ENGINE</p>
+                  <span className="text-lg font-bold font-display text-foreground">DOMAINPUT</span>
+                  <p className="text-[9px] text-muted-foreground tracking-wider">{t("footer.tagline")}</p>
                 </div>
               </div>
               <p className="text-muted-foreground text-sm leading-relaxed">
-                Next-generation domain management powered by artificial superintelligence and quantum infrastructure.
+                {t("footer.description")}
               </p>
             </div>
             
             {[
-              { title: "Products", links: ["Domains", "AI Engine", "Hosting", "SSL"] },
-              { title: "Company", links: ["About", "Careers", "Press", "Partners"] },
-              { title: "Support", links: ["Docs", "API", "Status", "Contact"] },
+              { title: t("footer.products"), links: [t("footer.domains"), t("footer.aiEngine"), t("footer.hosting"), t("footer.ssl")] },
+              { title: t("footer.company"), links: [t("footer.about"), t("footer.careers"), t("footer.press"), t("footer.partners")] },
+              { title: t("footer.support"), links: [t("footer.docs"), t("footer.api"), t("footer.status"), t("footer.contact")] },
             ].map((section) => (
               <div key={section.title}>
                 <h4 className="font-display font-bold mb-6 text-foreground tracking-wider">{section.title}</h4>
@@ -980,10 +1193,10 @@ const Index = () => {
 
           <div className="flex flex-col md:flex-row items-center justify-between gap-6 pt-8 border-t border-border/30">
             <p className="text-sm text-muted-foreground font-display tracking-wide">
-              © 2026 DOMAINPUT. ALL RIGHTS RESERVED.
+              {t("footer.copyright")}
             </p>
             <div className="flex items-center gap-8">
-              {["Privacy", "Terms", "Cookies"].map((item) => (
+              {[t("footer.privacy"), t("footer.terms"), t("footer.cookies")].map((item) => (
                 <a key={item} href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors tracking-wide">
                   {item}
                 </a>
@@ -1003,8 +1216,8 @@ const Index = () => {
             className="fixed top-24 right-4 w-96 glass-ultra rounded-3xl p-6 z-40"
           >
             <div className="flex items-center justify-between mb-6">
-              <h3 className="font-display font-bold text-lg tracking-wider holo-text">YOUR DOMAINS</h3>
-              <span className="cyber-tag px-3 py-1 rounded-full">{cart.length} ITEMS</span>
+              <h3 className="font-display font-bold text-lg tracking-wider holo-text">{t("cart.yourDomains")}</h3>
+              <span className="cyber-tag px-3 py-1 rounded-full">{cart.length} {t("cart.items")}</span>
             </div>
             <div className="space-y-3 mb-6 max-h-[300px] overflow-auto">
               {cart.map((domain) => (
@@ -1031,7 +1244,7 @@ const Index = () => {
               whileTap={{ scale: 0.98 }}
               className="w-full btn-neon-ultra py-4 rounded-xl font-bold text-primary-foreground font-display tracking-widest"
             >
-              CHECKOUT
+              {t("cart.checkout")}
             </motion.button>
           </motion.div>
         )}
