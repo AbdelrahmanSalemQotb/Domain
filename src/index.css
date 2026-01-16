@@ -2,58 +2,58 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url('https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Orbitron:wght@400;500;600;700;800;900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Exo+2:wght@300;400;500;600;700;800&display=swap');
 
 @layer base {
   :root {
-    /* Ultra Deep Space Theme */
-    --background: 230 80% 3%;
-    --foreground: 210 40% 98%;
+    /* Ultra Futuristic Dark Theme */
+    --background: 240 15% 3%;
+    --foreground: 180 100% 97%;
 
-    --card: 230 70% 6%;
-    --card-foreground: 210 40% 98%;
+    --card: 240 20% 6%;
+    --card-foreground: 180 100% 97%;
 
-    --popover: 230 70% 6%;
-    --popover-foreground: 210 40% 98%;
+    --popover: 240 20% 6%;
+    --popover-foreground: 180 100% 97%;
 
-    /* Electric Blue Primary */
-    --primary: 217 100% 50%;
-    --primary-foreground: 210 40% 98%;
+    /* Holographic Cyan Primary */
+    --primary: 180 100% 50%;
+    --primary-foreground: 240 15% 3%;
 
-    /* Neon Cyan */
-    --secondary: 195 100% 50%;
-    --secondary-foreground: 230 80% 3%;
+    /* Electric Blue */
+    --secondary: 210 100% 60%;
+    --secondary-foreground: 240 15% 3%;
 
-    --muted: 230 50% 10%;
-    --muted-foreground: 220 20% 55%;
+    --muted: 240 15% 12%;
+    --muted-foreground: 180 30% 55%;
 
-    /* Hot Pink Accent */
-    --accent: 320 100% 60%;
-    --accent-foreground: 210 40% 98%;
+    /* Neon Magenta Accent */
+    --accent: 320 100% 55%;
+    --accent-foreground: 180 100% 97%;
 
     --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive-foreground: 180 100% 97%;
 
-    --border: 230 50% 15%;
-    --input: 230 50% 8%;
-    --ring: 217 100% 50%;
+    --border: 180 50% 15%;
+    --input: 240 15% 8%;
+    --ring: 180 100% 50%;
 
     --radius: 1rem;
 
-    /* Neon Colors */
-    --neon-blue: 217 100% 50%;
-    --neon-cyan: 195 100% 50%;
-    --neon-pink: 320 100% 60%;
-    --neon-purple: 270 100% 60%;
+    /* Holographic Colors */
+    --holo-1: 180 100% 50%;
+    --holo-2: 280 100% 60%;
+    --holo-3: 320 100% 55%;
+    --holo-4: 60 100% 50%;
 
-    --sidebar-background: 230 80% 3%;
-    --sidebar-foreground: 210 40% 98%;
-    --sidebar-primary: 217 100% 50%;
-    --sidebar-primary-foreground: 210 40% 98%;
-    --sidebar-accent: 230 70% 8%;
-    --sidebar-accent-foreground: 210 40% 98%;
-    --sidebar-border: 230 50% 15%;
-    --sidebar-ring: 217 100% 50%;
+    --sidebar-background: 240 15% 3%;
+    --sidebar-foreground: 180 100% 97%;
+    --sidebar-primary: 180 100% 50%;
+    --sidebar-primary-foreground: 240 15% 3%;
+    --sidebar-accent: 240 20% 8%;
+    --sidebar-accent-foreground: 180 100% 97%;
+    --sidebar-border: 180 50% 15%;
+    --sidebar-ring: 180 100% 50%;
   }
 }
 
@@ -68,332 +68,514 @@
 
   body {
     @apply bg-background text-foreground antialiased;
-    font-family: 'Space Grotesk', sans-serif;
-    background: 
-      radial-gradient(ellipse at 20% 20%, hsl(217 100% 50% / 0.08) 0%, transparent 50%),
-      radial-gradient(ellipse at 80% 80%, hsl(320 100% 60% / 0.05) 0%, transparent 50%),
-      radial-gradient(ellipse at 50% 50%, hsl(195 100% 50% / 0.03) 0%, transparent 70%),
-      hsl(230 80% 3%);
-    background-attachment: fixed;
+    font-family: 'Exo 2', sans-serif;
   }
 }
 
 @layer components {
-  /* Orbitron Display Font */
+  /* Display Font */
   .font-display {
     font-family: 'Orbitron', sans-serif;
+    letter-spacing: 0.05em;
   }
 
-  /* Gradient Texts */
-  .gradient-text-primary {
-    background: linear-gradient(135deg, hsl(217 100% 60%) 0%, hsl(195 100% 50%) 50%, hsl(217 100% 60%) 100%);
+  /* Holographic Gradient */
+  .holo-gradient {
+    background: linear-gradient(
+      135deg,
+      hsl(180 100% 50%) 0%,
+      hsl(280 100% 60%) 25%,
+      hsl(320 100% 55%) 50%,
+      hsl(180 100% 50%) 75%,
+      hsl(60 100% 50%) 100%
+    );
+    background-size: 400% 400%;
+    animation: holo-shift 8s ease infinite;
+  }
+
+  .holo-text {
+    background: linear-gradient(
+      90deg,
+      hsl(180 100% 60%) 0%,
+      hsl(280 100% 70%) 25%,
+      hsl(320 100% 65%) 50%,
+      hsl(180 100% 60%) 75%,
+      hsl(60 100% 60%) 100%
+    );
+    background-size: 300% 100%;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
-    background-size: 200% 200%;
-    animation: gradient-shift 3s ease infinite;
+    animation: holo-shift 5s ease infinite;
   }
 
-  .gradient-text-accent {
-    background: linear-gradient(135deg, hsl(320 100% 60%) 0%, hsl(270 100% 60%) 50%, hsl(195 100% 50%) 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    background-clip: text;
-  }
-
-  @keyframes gradient-shift {
+  @keyframes holo-shift {
     0%, 100% { background-position: 0% 50%; }
     50% { background-position: 100% 50%; }
   }
 
-  /* Glassmorphism */
-  .glass {
-    background: linear-gradient(135deg, hsl(230 70% 8% / 0.7) 0%, hsl(230 80% 4% / 0.8) 100%);
-    backdrop-filter: blur(20px);
-    border: 1px solid hsl(230 50% 20% / 0.5);
+  /* Cyber Grid Background */
+  .cyber-grid {
+    background-image: 
+      linear-gradient(hsl(180 100% 50% / 0.03) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(180 100% 50% / 0.03) 1px, transparent 1px),
+      linear-gradient(hsl(180 100% 50% / 0.015) 1px, transparent 1px),
+      linear-gradient(90deg, hsl(180 100% 50% / 0.015) 1px, transparent 1px);
+    background-size: 100px 100px, 100px 100px, 20px 20px, 20px 20px;
+    background-position: -1px -1px, -1px -1px, -1px -1px, -1px -1px;
   }
 
-  .glass-strong {
-    background: linear-gradient(135deg, hsl(230 70% 10% / 0.9) 0%, hsl(230 80% 5% / 0.95) 100%);
-    backdrop-filter: blur(30px);
-    border: 1px solid hsl(230 50% 25% / 0.6);
+  /* Perspective Grid Floor */
+  .perspective-grid {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 50%;
+    background: 
+      linear-gradient(to bottom, transparent 0%, hsl(180 100% 50% / 0.05) 100%),
+      repeating-linear-gradient(
+        90deg,
+        transparent,
+        transparent 99px,
+        hsl(180 100% 50% / 0.1) 100px
+      ),
+      repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 99px,
+        hsl(180 100% 50% / 0.1) 100px
+      );
+    transform: perspective(500px) rotateX(60deg);
+    transform-origin: bottom;
+    mask-image: linear-gradient(to top, black 0%, transparent 100%);
   }
 
-  /* Neon Glow Buttons */
-  .btn-neon {
-    background: linear-gradient(135deg, hsl(217 100% 50%) 0%, hsl(195 100% 50%) 100%);
-    box-shadow: 
-      0 0 20px hsl(217 100% 50% / 0.5),
-      0 0 40px hsl(217 100% 50% / 0.3),
-      inset 0 1px 0 hsl(0 0% 100% / 0.2);
-    transition: all 0.3s ease;
+  /* Glitch Effect */
+  @keyframes glitch {
+    0%, 100% { 
+      clip-path: inset(0 0 0 0);
+      transform: translate(0);
+    }
+    20% { 
+      clip-path: inset(20% 0 60% 0);
+      transform: translate(-3px, 3px);
+    }
+    40% { 
+      clip-path: inset(40% 0 40% 0);
+      transform: translate(3px, -3px);
+    }
+    60% { 
+      clip-path: inset(60% 0 20% 0);
+      transform: translate(-3px, 3px);
+    }
+    80% { 
+      clip-path: inset(80% 0 0% 0);
+      transform: translate(3px, -3px);
+    }
+  }
+
+  .glitch-hover:hover {
+    animation: glitch 0.3s ease;
+  }
+
+  /* Glitch Text */
+  .glitch-text {
     position: relative;
-    overflow: hidden;
   }
 
-  .btn-neon::before {
-    content: '';
+  .glitch-text::before,
+  .glitch-text::after {
+    content: attr(data-text);
     position: absolute;
     top: 0;
-    left: -100%;
+    left: 0;
     width: 100%;
     height: 100%;
-    background: linear-gradient(90deg, transparent, hsl(0 0% 100% / 0.3), transparent);
-    transition: left 0.5s ease;
   }
 
-  .btn-neon:hover::before {
-    left: 100%;
+  .glitch-text::before {
+    color: hsl(180 100% 50%);
+    animation: glitch-1 2s infinite linear alternate-reverse;
+    clip-path: polygon(0 0, 100% 0, 100% 35%, 0 35%);
   }
 
-  .btn-neon:hover {
+  .glitch-text::after {
+    color: hsl(320 100% 55%);
+    animation: glitch-2 3s infinite linear alternate-reverse;
+    clip-path: polygon(0 65%, 100% 65%, 100% 100%, 0 100%);
+  }
+
+  @keyframes glitch-1 {
+    0%, 100% { transform: translate(0); }
+    20% { transform: translate(-2px, 2px); }
+    40% { transform: translate(2px, -2px); }
+    60% { transform: translate(-2px, -2px); }
+    80% { transform: translate(2px, 2px); }
+  }
+
+  @keyframes glitch-2 {
+    0%, 100% { transform: translate(0); }
+    20% { transform: translate(2px, -2px); }
+    40% { transform: translate(-2px, 2px); }
+    60% { transform: translate(2px, 2px); }
+    80% { transform: translate(-2px, -2px); }
+  }
+
+  /* Glassmorphism Ultra */
+  .glass-ultra {
+    background: linear-gradient(
+      135deg,
+      hsl(240 20% 8% / 0.8) 0%,
+      hsl(240 15% 5% / 0.9) 100%
+    );
+    backdrop-filter: blur(40px) saturate(180%);
+    border: 1px solid hsl(180 100% 50% / 0.15);
     box-shadow: 
-      0 0 30px hsl(217 100% 50% / 0.7),
-      0 0 60px hsl(217 100% 50% / 0.5),
-      0 0 100px hsl(217 100% 50% / 0.3);
+      0 0 40px hsl(180 100% 50% / 0.1),
+      inset 0 1px 0 hsl(180 100% 50% / 0.1);
+  }
+
+  /* Neon Button */
+  .btn-neon-ultra {
+    background: linear-gradient(135deg, hsl(180 100% 40%) 0%, hsl(210 100% 50%) 100%);
+    box-shadow: 
+      0 0 20px hsl(180 100% 50% / 0.5),
+      0 0 40px hsl(180 100% 50% / 0.3),
+      0 0 80px hsl(180 100% 50% / 0.2),
+      inset 0 2px 0 hsl(0 0% 100% / 0.3),
+      inset 0 -2px 0 hsl(0 0% 0% / 0.3);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    overflow: hidden;
+    text-shadow: 0 0 10px hsl(0 0% 100% / 0.5);
+  }
+
+  .btn-neon-ultra::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: conic-gradient(
+      transparent,
+      hsl(0 0% 100% / 0.3),
+      transparent 30%
+    );
+    animation: rotate-shine 4s linear infinite;
+  }
+
+  @keyframes rotate-shine {
+    100% { transform: rotate(360deg); }
+  }
+
+  .btn-neon-ultra:hover {
+    box-shadow: 
+      0 0 30px hsl(180 100% 50% / 0.7),
+      0 0 60px hsl(180 100% 50% / 0.5),
+      0 0 120px hsl(180 100% 50% / 0.3),
+      inset 0 2px 0 hsl(0 0% 100% / 0.4),
+      inset 0 -2px 0 hsl(0 0% 0% / 0.4);
     transform: translateY(-3px) scale(1.02);
   }
 
-  /* Neon Border Effect */
-  .neon-border {
+  /* Holographic Card */
+  .card-holo {
+    background: linear-gradient(
+      135deg,
+      hsl(240 20% 8% / 0.9) 0%,
+      hsl(240 15% 5% / 0.95) 100%
+    );
+    border: 1px solid transparent;
+    background-clip: padding-box;
     position: relative;
+    transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
   }
 
-  .neon-border::before {
+  .card-holo::before {
     content: '';
     position: absolute;
     inset: -2px;
-    background: linear-gradient(135deg, hsl(217 100% 50%), hsl(195 100% 50%), hsl(320 100% 60%), hsl(217 100% 50%));
-    background-size: 300% 300%;
+    background: linear-gradient(
+      135deg,
+      hsl(180 100% 50% / 0.3) 0%,
+      hsl(280 100% 60% / 0.2) 25%,
+      hsl(320 100% 55% / 0.2) 50%,
+      hsl(180 100% 50% / 0.3) 75%,
+      transparent 100%
+    );
     border-radius: inherit;
     z-index: -1;
-    animation: neon-rotate 4s linear infinite;
     opacity: 0;
-    transition: opacity 0.3s ease;
+    transition: opacity 0.5s ease;
   }
 
-  .neon-border:hover::before {
+  .card-holo:hover::before {
     opacity: 1;
   }
 
-  @keyframes neon-rotate {
-    0% { background-position: 0% 50%; }
-    50% { background-position: 100% 50%; }
-    100% { background-position: 0% 50%; }
-  }
-
-  /* Search Input Futuristic */
-  .search-futuristic {
-    background: linear-gradient(135deg, hsl(230 60% 8%) 0%, hsl(230 70% 5%) 100%);
-    border: 2px solid hsl(217 100% 50% / 0.3);
+  .card-holo:hover {
+    transform: translateY(-15px) scale(1.02);
     box-shadow: 
-      0 0 30px hsl(217 100% 50% / 0.15),
-      inset 0 0 30px hsl(217 100% 50% / 0.05);
-    transition: all 0.4s ease;
+      0 30px 60px hsl(240 15% 3% / 0.8),
+      0 0 40px hsl(180 100% 50% / 0.15);
   }
 
-  .search-futuristic:focus-within {
-    border-color: hsl(217 100% 50% / 0.8);
+  /* Search Bar Futuristic */
+  .search-ultra {
+    background: linear-gradient(135deg, hsl(240 20% 6%) 0%, hsl(240 15% 4%) 100%);
+    border: 2px solid hsl(180 100% 50% / 0.2);
     box-shadow: 
-      0 0 50px hsl(217 100% 50% / 0.4),
-      0 0 100px hsl(217 100% 50% / 0.2),
-      inset 0 0 30px hsl(217 100% 50% / 0.1);
-  }
-
-  /* Feature Cards */
-  .card-futuristic {
-    background: linear-gradient(145deg, hsl(230 60% 10% / 0.6) 0%, hsl(230 70% 5% / 0.8) 100%);
-    border: 1px solid hsl(230 50% 20% / 0.4);
-    backdrop-filter: blur(20px);
+      0 0 40px hsl(180 100% 50% / 0.1),
+      inset 0 0 60px hsl(180 100% 50% / 0.02);
     transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
     position: relative;
     overflow: hidden;
   }
 
-  .card-futuristic::before {
+  .search-ultra::before {
     content: '';
     position: absolute;
     top: 0;
-    left: 0;
-    right: 0;
-    height: 1px;
-    background: linear-gradient(90deg, transparent, hsl(217 100% 50% / 0.5), transparent);
+    left: -100%;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, hsl(180 100% 50%), transparent);
+    animation: search-line 3s linear infinite;
   }
 
-  .card-futuristic::after {
-    content: '';
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at var(--mouse-x, 50%) var(--mouse-y, 50%), hsl(217 100% 50% / 0.1) 0%, transparent 50%);
-    opacity: 0;
-    transition: opacity 0.3s ease;
+  @keyframes search-line {
+    0% { left: -100%; }
+    100% { left: 100%; }
   }
 
-  .card-futuristic:hover {
-    border-color: hsl(217 100% 50% / 0.5);
-    transform: translateY(-10px) scale(1.02);
+  .search-ultra:focus-within {
+    border-color: hsl(180 100% 50% / 0.6);
     box-shadow: 
-      0 30px 60px hsl(230 80% 3% / 0.8),
-      0 0 40px hsl(217 100% 50% / 0.15);
+      0 0 60px hsl(180 100% 50% / 0.3),
+      0 0 120px hsl(180 100% 50% / 0.15),
+      inset 0 0 60px hsl(180 100% 50% / 0.05);
   }
 
-  .card-futuristic:hover::after {
-    opacity: 1;
-  }
-
-  /* Floating Animation */
-  @keyframes float {
-    0%, 100% { transform: translateY(0) rotate(0deg); }
-    25% { transform: translateY(-15px) rotate(2deg); }
-    50% { transform: translateY(-25px) rotate(0deg); }
-    75% { transform: translateY(-15px) rotate(-2deg); }
-  }
-
-  .animate-float {
-    animation: float 8s ease-in-out infinite;
-  }
-
-  .animate-float-delayed {
-    animation: float 8s ease-in-out infinite;
-    animation-delay: -4s;
-  }
-
-  /* Pulse Glow */
-  @keyframes pulse-neon {
+  /* AI Brain Animation */
+  @keyframes brain-pulse {
     0%, 100% { 
-      opacity: 0.5;
-      box-shadow: 0 0 30px hsl(217 100% 50% / 0.3);
+      filter: drop-shadow(0 0 10px hsl(180 100% 50% / 0.5));
+      transform: scale(1);
     }
     50% { 
-      opacity: 1;
-      box-shadow: 0 0 60px hsl(217 100% 50% / 0.6);
+      filter: drop-shadow(0 0 30px hsl(180 100% 50% / 0.8));
+      transform: scale(1.1);
     }
   }
 
-  .animate-pulse-neon {
-    animation: pulse-neon 3s ease-in-out infinite;
+  .ai-pulse {
+    animation: brain-pulse 2s ease-in-out infinite;
   }
 
-  /* Scan Line Effect */
-  @keyframes scan {
-    0% { transform: translateY(-100%); }
-    100% { transform: translateY(100vh); }
+  /* Floating Orbs */
+  @keyframes float-orb {
+    0%, 100% { 
+      transform: translateY(0) translateX(0) scale(1);
+      opacity: 0.3;
+    }
+    25% { 
+      transform: translateY(-50px) translateX(25px) scale(1.1);
+      opacity: 0.5;
+    }
+    50% { 
+      transform: translateY(-25px) translateX(-25px) scale(0.9);
+      opacity: 0.4;
+    }
+    75% { 
+      transform: translateY(-75px) translateX(10px) scale(1.05);
+      opacity: 0.6;
+    }
   }
 
-  .scan-line::after {
+  .orb-float {
+    animation: float-orb 15s ease-in-out infinite;
+  }
+
+  .orb-float-delayed {
+    animation: float-orb 18s ease-in-out infinite;
+    animation-delay: -5s;
+  }
+
+  .orb-float-slow {
+    animation: float-orb 22s ease-in-out infinite;
+    animation-delay: -10s;
+  }
+
+  /* Scan Line */
+  .scan-effect::after {
     content: '';
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
-    height: 2px;
-    background: linear-gradient(90deg, transparent, hsl(217 100% 50% / 0.3), hsl(195 100% 50% / 0.5), hsl(217 100% 50% / 0.3), transparent);
-    animation: scan 8s linear infinite;
+    height: 4px;
+    background: linear-gradient(
+      90deg,
+      transparent 0%,
+      hsl(180 100% 50% / 0.3) 20%,
+      hsl(180 100% 50% / 0.8) 50%,
+      hsl(180 100% 50% / 0.3) 80%,
+      transparent 100%
+    );
+    box-shadow: 0 0 30px hsl(180 100% 50% / 0.5);
+    animation: scan-down 6s linear infinite;
     pointer-events: none;
     z-index: 9999;
   }
 
-  /* Grid Pattern */
-  .grid-pattern {
-    background-image: 
-      linear-gradient(hsl(217 100% 50% / 0.03) 1px, transparent 1px),
-      linear-gradient(90deg, hsl(217 100% 50% / 0.03) 1px, transparent 1px);
-    background-size: 50px 50px;
+  @keyframes scan-down {
+    0% { top: -10px; opacity: 0; }
+    5% { opacity: 1; }
+    95% { opacity: 1; }
+    100% { top: 100vh; opacity: 0; }
   }
 
-  /* Particle Effect Container */
-  .particles {
-    position: absolute;
-    inset: 0;
-    overflow: hidden;
-    pointer-events: none;
-  }
-
-  /* Extension Badge */
-  .ext-badge {
-    background: linear-gradient(135deg, hsl(230 60% 12%) 0%, hsl(230 70% 8%) 100%);
-    border: 1px solid hsl(230 50% 20% / 0.5);
-    transition: all 0.3s ease;
-  }
-
-  .ext-badge:hover {
-    border-color: hsl(217 100% 50% / 0.6);
-    background: linear-gradient(135deg, hsl(230 60% 15%) 0%, hsl(230 70% 10%) 100%);
-    box-shadow: 0 0 30px hsl(217 100% 50% / 0.2);
-    transform: scale(1.05);
-  }
-
-  /* Domain Result */
-  .domain-result {
-    background: linear-gradient(135deg, hsl(230 60% 8%) 0%, hsl(230 70% 5%) 100%);
-    border: 1px solid hsl(230 50% 18%);
-    transition: all 0.3s ease;
-  }
-
-  .domain-result:hover {
-    border-color: hsl(217 100% 50% / 0.5);
-    box-shadow: 0 0 20px hsl(217 100% 50% / 0.15);
-  }
-
-  .domain-result.available {
-    border-color: hsl(150 100% 40% / 0.5);
-  }
-
-  .domain-result.available:hover {
-    border-color: hsl(150 100% 40%);
-    box-shadow: 0 0 20px hsl(150 100% 40% / 0.2);
-  }
-
-  .domain-result.taken {
-    border-color: hsl(0 70% 50% / 0.3);
-    opacity: 0.7;
-  }
-
-  /* Nav Link Futuristic */
-  .nav-futuristic {
-    color: hsl(var(--muted-foreground));
-    position: relative;
-    transition: color 0.3s ease;
-  }
-
-  .nav-futuristic::after {
-    content: '';
-    position: absolute;
-    bottom: -4px;
-    left: 50%;
-    width: 0;
-    height: 2px;
-    background: linear-gradient(90deg, hsl(217 100% 50%), hsl(195 100% 50%));
-    transition: all 0.3s ease;
-    transform: translateX(-50%);
-  }
-
-  .nav-futuristic:hover {
-    color: hsl(var(--foreground));
-  }
-
-  .nav-futuristic:hover::after {
-    width: 100%;
+  /* Matrix Rain Effect */
+  .matrix-bg {
+    background: 
+      radial-gradient(ellipse at 50% 0%, hsl(180 100% 50% / 0.15) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 80%, hsl(280 100% 60% / 0.1) 0%, transparent 50%),
+      radial-gradient(ellipse at 20% 60%, hsl(320 100% 55% / 0.1) 0%, transparent 50%);
   }
 
   /* Cyber Tag */
   .cyber-tag {
-    background: linear-gradient(135deg, hsl(217 100% 50% / 0.2) 0%, hsl(195 100% 50% / 0.1) 100%);
-    border: 1px solid hsl(217 100% 50% / 0.4);
-    color: hsl(195 100% 60%);
+    background: linear-gradient(135deg, hsl(180 100% 50% / 0.2) 0%, hsl(280 100% 60% / 0.1) 100%);
+    border: 1px solid hsl(180 100% 50% / 0.4);
+    color: hsl(180 100% 70%);
     font-family: 'Orbitron', sans-serif;
-    font-size: 0.65rem;
-    letter-spacing: 0.1em;
+    font-size: 0.6rem;
+    letter-spacing: 0.15em;
     text-transform: uppercase;
+    text-shadow: 0 0 10px hsl(180 100% 50% / 0.5);
   }
 
-  /* Stats Counter */
-  .stat-value {
+  /* Extension Badge */
+  .ext-badge-ultra {
+    background: linear-gradient(135deg, hsl(240 20% 10%) 0%, hsl(240 15% 6%) 100%);
+    border: 1px solid hsl(180 100% 50% / 0.2);
+    transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .ext-badge-ultra::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(135deg, hsl(180 100% 50% / 0.1) 0%, transparent 100%);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+  }
+
+  .ext-badge-ultra:hover {
+    border-color: hsl(180 100% 50% / 0.6);
+    transform: translateY(-5px) scale(1.05);
+    box-shadow: 0 0 30px hsl(180 100% 50% / 0.2);
+  }
+
+  .ext-badge-ultra:hover::before {
+    opacity: 1;
+  }
+
+  /* Domain Result */
+  .domain-result-ultra {
+    background: linear-gradient(135deg, hsl(240 20% 7%) 0%, hsl(240 15% 4%) 100%);
+    border: 1px solid hsl(180 100% 50% / 0.15);
+    transition: all 0.3s ease;
+  }
+
+  .domain-result-ultra.available {
+    border-color: hsl(150 100% 45% / 0.4);
+  }
+
+  .domain-result-ultra.available:hover {
+    border-color: hsl(150 100% 45% / 0.8);
+    box-shadow: 0 0 30px hsl(150 100% 45% / 0.2);
+  }
+
+  .domain-result-ultra.taken {
+    border-color: hsl(0 70% 50% / 0.3);
+    opacity: 0.6;
+  }
+
+  /* Stats Value */
+  .stat-value-ultra {
     font-family: 'Orbitron', sans-serif;
-    background: linear-gradient(180deg, hsl(0 0% 100%) 0%, hsl(217 100% 70%) 100%);
+    background: linear-gradient(180deg, hsl(180 100% 90%) 0%, hsl(180 100% 50%) 100%);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     background-clip: text;
+    filter: drop-shadow(0 0 20px hsl(180 100% 50% / 0.5));
+  }
+
+  /* Nav Link */
+  .nav-ultra {
+    color: hsl(var(--muted-foreground));
+    position: relative;
+    transition: all 0.3s ease;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.1em;
+  }
+
+  .nav-ultra::before {
+    content: '';
+    position: absolute;
+    bottom: -6px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background: linear-gradient(90deg, hsl(180 100% 50%), hsl(280 100% 60%));
+    transition: width 0.3s ease;
+    box-shadow: 0 0 10px hsl(180 100% 50% / 0.5);
+  }
+
+  .nav-ultra:hover {
+    color: hsl(var(--foreground));
+    text-shadow: 0 0 20px hsl(180 100% 50% / 0.5);
+  }
+
+  .nav-ultra:hover::before {
+    width: 100%;
+  }
+
+  /* Typing Effect */
+  @keyframes blink {
+    0%, 50% { opacity: 1; }
+    51%, 100% { opacity: 0; }
+  }
+
+  .cursor-blink::after {
+    content: '|';
+    animation: blink 1s step-end infinite;
+    color: hsl(180 100% 50%);
+  }
+
+  /* Data Stream */
+  @keyframes data-stream {
+    0% { transform: translateY(-100%); opacity: 0; }
+    10% { opacity: 1; }
+    90% { opacity: 1; }
+    100% { transform: translateY(100vh); opacity: 0; }
+  }
+
+  .data-stream {
+    position: fixed;
+    top: 0;
+    width: 1px;
+    height: 100px;
+    background: linear-gradient(to bottom, transparent, hsl(180 100% 50%), transparent);
+    animation: data-stream 3s linear infinite;
+    pointer-events: none;
+    opacity: 0.3;
   }
 }
 
