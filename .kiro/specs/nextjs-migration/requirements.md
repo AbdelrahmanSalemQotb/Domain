@@ -149,3 +149,24 @@ This document outlines the requirements for migrating the existing Domainput lan
 7. THE Next_App SHALL use clear, descriptive naming conventions for files and functions
 8. WHEN data needs to come from a database, THE architecture SHALL allow easy replacement of static data with API calls
 9. WHEN UI library needs to be changed, THE component structure SHALL allow easy swapping of UI primitives
+
+### Requirement 11: Single Responsibility Component Design
+
+**User Story:** As a developer, I want each component to have a single, well-defined responsibility, so that the code is maintainable, testable, and easy to understand.
+
+#### Acceptance Criteria
+
+1. THE Next_App SHALL NOT create monolithic components that handle multiple responsibilities
+2. WHEN a component handles more than one concern, THE component SHALL be split into smaller, focused components
+3. THE Next_App SHALL separate presentation logic from business logic:
+   - Presentation components SHALL only handle rendering and styling
+   - Business logic SHALL be extracted to custom hooks or utility functions
+4. THE Next_App SHALL separate interactive elements from static content:
+   - Static content SHALL remain in Server Components
+   - Interactive elements SHALL be isolated in small Client Components
+5. WHEN a section contains multiple features, THE section SHALL be composed of multiple smaller components rather than one large component
+6. THE Next_App SHALL avoid components with excessive props (more than 5-7 props indicates multiple responsibilities)
+7. THE Next_App SHALL extract reusable logic into custom hooks rather than duplicating code across components
+8. THE Next_App SHALL use composition over complex conditional rendering within a single component
+9. WHEN a component file exceeds 150 lines, THE component SHALL be evaluated for splitting into smaller components
+10. THE Next_App SHALL follow the principle: each component should do one thing and do it well

@@ -56,6 +56,254 @@ graph TD
     J --> T[NeuralNetwork]
 ```
 
+### Single Responsibility Principle (SRP) Guidelines
+
+**Core Principle**: Each component should have one reason to change. If a component needs to change for multiple reasons, it has multiple responsibilities and should be split.
+
+#### Component Responsibility Examples
+
+**❌ Bad: Monolithic Component**
+
+```typescript
+// DON'T: One component doing everything
+function HeroSection() {
+  const [search, setSearch] = useState("");
+  const [results, setResults] = useState([]);
+  const [cart, setCart] = useState([]);
+  const [isSearching, setIsSearching] = useState(false);
+
+  // Search logic
+  const handleSearch = () => {
+    /* ... */
+  };
+
+  // Cart logic
+  const addToCart = () => {
+    /* ... */
+  };
+
+  // Rendering everything
+  return (
+    <section>
+      {/* Background effects */}
+      {/* Search bar */}
+      {/* Results */}
+      {/* Extension pills */}
+      {/* Cart sidebar */}
+    </section>
+  );
+}
+```
+
+**✅ Good: Separated Responsibilities**
+
+```typescript
+// DO: Each component has one responsibility
+
+// 1. Container - Layout and composition only
+function HeroSection({ onAddToCart, cart }) {
+  return (
+    <section className="relative">
+      <BackgroundEffects />
+      <HeroContent onAddToCart={onAddToCart} cart={cart} />
+    </section>
+  );
+}
+
+// 2. Content - Static content structure
+function HeroContent({ onAddToCart, cart }) {
+  return (
+    <div className="container">
+      <HeroHeading />
+      <SearchContainer onAddToCart={onAddToCart} />
+      <ExtensionPills />
+    </div>
+  );
+}
+
+// 3. Search - Search logic only
+function SearchContainer({ onAddToCart }) {
+  const { searchQuery, isSearching, showResults, handleSearch } =
+    useDomainSearch();
+
+  return (
+    <>
+      <SearchBar
+        value={searchQuery}
+        onSearch={handleSearch}
+        isSearching={isSearching}
+      />
+      {showResults && (
+        <SearchResults query={searchQuery} onAddToCart={onAddToCart} />
+      )}
+    </>
+  );
+}
+
+// 4. Search Bar - Input UI only
+function SearchBar({ value, onSearch, isSearching }) {
+  return <div>{/* Input and button */}</div>;
+}
+
+// 5. Results - Results display only
+function SearchResults({ query, onAddToCart }) {
+  const results = generateResults(query);
+  return <div>{/* Map results */}</div>;
+}
+```
+
+#### Responsibility Separation Patterns
+
+**1. Separate Data from Presentation**
+
+```typescript
+// ❌ Bad: Data and presentation mixed
+function FeatureCard({ feature }) {
+  const [isHovered, setIsHovered] = useState(false);
+
+  // Data transformation logic mixed with component
+  const formattedStats = feature.stats.toUpperCase();
+  const iconColor = feature.color.split("-")[1];
+
+  return <div>{/* ... */}</div>;
+}
+
+// ✅ Good: Data transformation in utilities
+function FeatureCard({ feature }) {
+  const [isHovered, setIsHovered] = useState(false);
+  const displayData = useFeatureDisplay(feature); // Hook handles transformation
+
+  return <div>{/* ... */}</div>;
+}
+```
+
+**2. Separate Interactive from Static**
+
+```typescript
+// ❌ Bad: Entire section as Client Component
+"use client";
+function StatsSection() {
+  return (
+    <section>
+      <h2>Our Statistics</h2>
+      <p>Static description text</p>
+      <div className="grid">
+        {stats.map((stat) => (
+          <StatCard key={stat.label} stat={stat} />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+// ✅ Good: Only interactive parts as Client Components
+// Server Component (default)
+function StatsSection() {
+  return (
+    <section>
+      <h2>Our Statistics</h2>
+      <p>Static description text</p>
+      <div className="grid">
+        {stats.map((stat) => (
+          <StatCard key={stat.label} stat={stat} />
+        ))}
+      </div>
+    </section>
+  );
+}
+
+// Client Component - only the animated counter
+"use client";
+function StatCard({ stat }) {
+  return (
+    <div>
+      <AnimatedCounter value={stat.value} suffix={stat.suffix} />
+      <p>{stat.label}</p>
+    </div>
+  );
+}
+```
+
+**3. Extract Business Logic to Hooks**
+
+```typescript
+// ❌ Bad: Business logic in component
+function DomainsGrid() {
+  const [currentPage, setCurrentPage] = useState(1);
+  const itemsPerPage = 12;
+  const totalPages = Math.ceil(domains.length / itemsPerPage);
+  const startIndex = (currentPage - 1) * itemsPerPage;
+  const currentDomains = domains.slice(startIndex, startIndex + itemsPerPage);
+
+  return <div>{/* ... */}</div>;
+}
+
+// ✅ Good: Business logic in custom hook
+function DomainsGrid() {
+  const { currentItems, currentPage, totalPages, setCurrentPage } =
+    usePagination(domains, 12);
+
+  return <div>{/* ... */}</div>;
+}
+```
+
+**4. Compose Instead of Conditional Complexity**
+
+```typescript
+// ❌ Bad: Complex conditionals in one component
+function SearchArea({ mode }) {
+  if (mode === "idle") {
+    return <IdleState />;
+  } else if (mode === "searching") {
+    return <LoadingState />;
+  } else if (mode === "results") {
+    return <ResultsState />;
+  } else if (mode === "error") {
+    return <ErrorState />;
+  }
+}
+
+// ✅ Good: Separate components for each state
+function SearchArea({ mode }) {
+  return (
+    <div>
+      {mode === "idle" && <SearchIdle />}
+      {mode === "searching" && <SearchLoading />}
+      {mode === "results" && <SearchResults />}
+      {mode === "error" && <SearchError />}
+    </div>
+  );
+}
+```
+
+#### Component Size Guidelines
+
+- **UI Primitives**: 20-50 lines (Button, Input, Badge)
+- **Feature Components**: 50-100 lines (SearchBar, FeatureCard)
+- **Section Components**: 100-150 lines (HeroSection, FeaturesSection)
+- **Page Components**: 150-200 lines (HomePage - mostly composition)
+
+**If a component exceeds these guidelines, consider:**
+
+1. Extracting helper functions to utilities
+2. Extracting business logic to custom hooks
+3. Breaking into smaller sub-components
+4. Separating static from interactive parts
+
+#### Responsibility Checklist
+
+Before creating or modifying a component, ask:
+
+1. ✅ Does this component have a single, clear purpose?
+2. ✅ Can I describe what it does in one sentence?
+3. ✅ Would changing the styling require changing business logic?
+4. ✅ Would changing business logic require changing the UI?
+5. ✅ Is the component reusable in different contexts?
+6. ✅ Are there fewer than 7 props?
+7. ✅ Is the file under 150 lines?
+
+If any answer is "no" or uncertain, the component likely needs refactoring.
+
 ### Server vs Client Components Strategy
 
 **Principle: Keep Client Components as small as possible. Only wrap the interactive parts, not entire sections.**
@@ -535,3 +783,23 @@ _For any_ call to generateDomainsForSale, all generated domains should:
 - Have a valid TLD extension
 
 **Validates: Requirements 3.6**
+
+### Property 7: Component Files Follow Size Guidelines
+
+_For any_ component file in the codebase, the file should:
+
+- Contain fewer than 200 lines of code (excluding imports and exports)
+- Have a single default export (the main component)
+- Not contain more than 3 internal helper functions (indicating multiple responsibilities)
+
+**Validates: Requirements 11.9**
+
+### Property 8: Components Have Limited Props
+
+_For any_ component interface, the number of props should:
+
+- Be 7 or fewer for most components
+- Each prop should serve a distinct purpose
+- Props should not be mutually exclusive (indicating the component handles multiple modes)
+
+**Validates: Requirements 11.6**
