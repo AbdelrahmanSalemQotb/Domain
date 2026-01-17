@@ -25,12 +25,14 @@ import {
   ShoppingBag,
   ChevronLeft,
   ChevronRight,
+  Menu,
 } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { domains, Domain } from "@/data/domains";
 import { Link } from "react-router-dom";
 import { DomainCard } from "@/components/DomainCard";
+import { MobileMenu } from "@/components/MobileMenu";
 
 // Data Stream Effect
 const DataStreams = () => {
@@ -301,6 +303,7 @@ const Index = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
   const [activeTab, setActiveTab] = useState<"register" | "transfer">(
     "register",
   );
@@ -536,14 +539,27 @@ const Index = () => {
               <motion.button
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
-                className="btn-neon-ultra px-8 py-3 rounded-xl text-sm font-bold text-primary-foreground font-display tracking-widest relative overflow-hidden"
+                className="btn-neon-ultra px-8 py-3 rounded-xl text-sm font-bold text-primary-foreground font-display tracking-widest relative overflow-hidden hidden md:block"
               >
                 <span className="relative z-10">{t("nav.initialize")}</span>
               </motion.button>
+              
+              <button 
+                className="lg:hidden p-2 text-foreground hover:bg-white/10 rounded-lg transition-colors"
+                onClick={() => setIsMobileMenuOpen(true)}
+              >
+                <Menu className="w-6 h-6" />
+              </button>
             </div>
           </div>
         </div>
       </motion.nav>
+
+      <MobileMenu
+        isOpen={isMobileMenuOpen}
+        onClose={() => setIsMobileMenuOpen(false)}
+        items={navItems}
+      />
 
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center pt-24 pb-12 cyber-grid overflow-hidden">
@@ -597,7 +613,7 @@ const Index = () => {
             transition={{ duration: 1, delay: 0.3 }}
             className="mb-8"
           >
-            <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold font-display tracking-tight mb-4">
+            <h1 className="text-4xl md:text-6xl lg:text-8xl font-bold font-display tracking-tight mb-4 break-words">
               <span className="text-foreground block">{t("hero.claim")}</span>
               <span className="holo-text block">{t("hero.theFuture")}</span>
             </h1>
@@ -620,13 +636,13 @@ const Index = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
-            className="inline-flex items-center glass-ultra rounded-full p-1.5 mb-8"
+            className="inline-flex flex-col md:flex-row items-center glass-ultra rounded-2xl md:rounded-full p-1.5 mb-8"
           >
             {["register", "transfer"].map((tab) => (
               <motion.button
                 key={tab}
                 onClick={() => setActiveTab(tab as "register" | "transfer")}
-                className={`px-10 py-4 rounded-full text-sm font-bold uppercase tracking-[0.2em] transition-all font-display ${
+                className={`px-10 py-4 rounded-xl md:rounded-full text-sm font-bold uppercase tracking-[0.2em] transition-all font-display w-full md:w-auto ${
                   activeTab === tab
                     ? "btn-neon-ultra text-primary-foreground"
                     : "text-muted-foreground hover:text-foreground"

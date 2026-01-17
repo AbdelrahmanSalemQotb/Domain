@@ -1,7 +1,8 @@
 import { useState, useMemo } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
-import { Search, Filter, SlidersHorizontal, X } from "lucide-react";
+import { Search, Filter, SlidersHorizontal, X, Menu } from "lucide-react";
+import { MobileMenu } from "@/components/MobileMenu";
 import { domains } from "@/data/domains";
 import { DomainCard } from "@/components/DomainCard";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
@@ -13,6 +14,15 @@ const Portfolio = () => {
     const [selectedCategory, setSelectedCategory] = useState<string>("All");
     const [priceRange, setPriceRange] = useState<{ min: number; max: number }>({ min: 0, max: 100000 });
     const [isFilterOpen, setIsFilterOpen] = useState(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+    const navItems = [
+      t("nav.domains"),
+      t("nav.hosting"),
+      t("nav.email"),
+      t("nav.cloud"),
+      t("nav.aiEngine"),
+    ];
 
     // Extract unique categories
     const categories = ["All", ...Array.from(new Set(domains.map(d => d.category || "Uncategorized")))];
@@ -50,9 +60,21 @@ const Portfolio = () => {
                     </Link>
                     <div className="flex items-center gap-4">
                         <LanguageSwitcher />
+                        <button 
+                            className="p-2 text-foreground hover:bg-white/10 rounded-lg transition-colors"
+                            onClick={() => setIsMobileMenuOpen(true)}
+                        >
+                            <Menu className="w-6 h-6" />
+                        </button>
                     </div>
                 </div>
             </nav>
+
+            <MobileMenu
+                isOpen={isMobileMenuOpen}
+                onClose={() => setIsMobileMenuOpen(false)}
+                items={navItems}
+            />
 
             {/* Header Section */}
             <div className="pt-32 pb-12 container mx-auto px-6 relative z-10">
@@ -86,7 +108,7 @@ const Portfolio = () => {
                         </div>
 
                         {/* Filter Toggles */}
-                        <div className="flex items-center gap-4 w-full md:w-auto overflow-x-auto pb-2 md:pb-0">
+                        <div className="flex items-center gap-4 w-full md:w-auto overflow-x-auto pb-2 md:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
                             {categories.map(cat => (
                                 <button
                                     key={cat}
