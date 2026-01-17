@@ -12,7 +12,8 @@
     "version": "v2.0.26",
     "claim": "REVENDIQUER",
     "theFuture": "L'AVENIR",
-    "subtitle": "Découvrez {{text}} avec notre intelligence de domaine alimentée par l'IA quantique.",
+    "subtitlePart1": "Découvrez",
+    "subtitlePart2": "avec notre intelligence de domaine alimentée par l'IA quantique.",
     "typingTexts": {
       "text1": "votre domaine parfait",
       "text2": "votre identité numérique",
@@ -124,5 +125,3 @@
     "cookies": "Cookies"
   }
 }
-
-

@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useTransition } from "react";
 import { useLocale } from "next-intl";
 import { useRouter, usePathname } from "next/navigation";
 import { Globe, ChevronDown } from "lucide-react";
@@ -40,15 +40,21 @@ export const LanguageSwitcher = () => {
   const router = useRouter();
   const pathname = usePathname();
   const [isOpen, setIsOpen] = useState(false);
+  const [isPending, startTransition] = useTransition();
 
   const currentLanguage =
     languages.find((lang) => lang.code === locale) || languages[0];
 
-  const changeLanguage = (langCode: string) => {
-    // For next-intl, we need to update the locale in the URL or cookie
-    // This is a simplified version - in production you might use next-intl's routing
-    document.cookie = `NEXT_LOCALE=${langCode};path=/;max-age=31536000`;
-    router.refresh();
+  const changeLanguage = (newLocale: string) => {
+    // Replace the locale segment in the pathname
+    // pathname is like /en/some-page or /ar/some-page
+    const segments = pathname.split("/");
+    segments[1] = newLocale; // Replace the locale segment
+    const newPath = segments.join("/") || `/${newLocale}`;
+
+    startTransition(() => {
+      router.replace(newPath);
+    });
     setIsOpen(false);
   };
 
@@ -62,6 +68,7 @@ export const LanguageSwitcher = () => {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           className="flex items-center gap-2 glass-ultra px-4 py-2 rounded-xl hover:border-primary/50 transition-colors"
+          disabled={isPending}
         >
           <Globe className="w-4 h-4 text-primary" />
           <span className="text-sm font-display tracking-wide">
@@ -72,7 +79,7 @@ export const LanguageSwitcher = () => {
       </DropdownMenuTrigger>
       <DropdownMenuContent
         align="end"
-        className="glass-ultra border-primary/20 min-w-[200px]"
+        className="glass-ultra border-primary/20 min-w-[200px] max-h-[400px] overflow-y-auto"
       >
         {languages.map((lang) => (
           <DropdownMenuItem

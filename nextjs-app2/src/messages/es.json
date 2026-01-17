@@ -12,7 +12,8 @@
     "version": "v2.0.26",
     "claim": "RECLAMA",
     "theFuture": "EL FUTURO",
-    "subtitle": "Descubre {{text}} con nuestra inteligencia de dominio impulsada por IA cuántica.",
+    "subtitlePart1": "Descubre",
+    "subtitlePart2": "con nuestra inteligencia de dominio impulsada por IA cuántica.",
     "typingTexts": {
       "text1": "tu dominio perfecto",
       "text2": "tu identidad digital",
@@ -124,5 +125,3 @@
     "cookies": "Cookies"
   }
 }
-
-
