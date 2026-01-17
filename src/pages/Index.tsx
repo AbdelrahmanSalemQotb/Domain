@@ -2,11 +2,29 @@ import { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { useNavigate } from "react-router-dom";
-import { 
-  Search, Globe, Shield, Zap, ArrowRight, Check, Sparkles, Server, 
-  Mail, ChevronDown, Rocket, Lock, BarChart3, X, ShoppingCart,
-  Star, Brain, Cpu, Network, Fingerprint, Eye, Radio, Wifi,
-  ExternalLink, MessageCircle, ShoppingBag, ChevronLeft, ChevronRight
+import {
+  Search,
+  Globe,
+  Shield,
+  ArrowRight,
+  Check,
+  Sparkles,
+  ChevronDown,
+  Rocket,
+  Lock,
+  X,
+  ShoppingCart,
+  Star,
+  Brain,
+  Cpu,
+  Network,
+  Eye,
+  Radio,
+  Wifi,
+  MessageCircle,
+  ShoppingBag,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
@@ -26,8 +44,8 @@ const DataStreams = () => {
         <motion.div
           key={stream.id}
           className="absolute w-px bg-gradient-to-b from-transparent via-blue-500 to-transparent opacity-20"
-          style={{ left: stream.left, height: '150px' }}
-          animate={{ y: ['-150px', '100vh'] }}
+          style={{ left: stream.left, height: "150px" }}
+          animate={{ y: ["-150px", "100vh"] }}
           transition={{
             duration: stream.duration,
             delay: stream.delay,
@@ -84,34 +102,55 @@ const FloatingParticles = () => {
 
 // Hexagon Grid Background
 const HexGrid = () => (
-  <svg className="absolute inset-0 w-full h-full opacity-10 pointer-events-none" xmlns="http://www.w3.org/2000/svg">
+  <svg
+    className="absolute inset-0 w-full h-full opacity-10 pointer-events-none"
+    xmlns="http://www.w3.org/2000/svg"
+  >
     <defs>
-      <pattern id="hexagons" width="50" height="43.4" patternUnits="userSpaceOnUse" patternTransform="scale(2)">
-        <polygon 
-          points="25,0 50,12.5 50,37.5 25,50 0,37.5 0,12.5" 
-          fill="none" 
-          stroke="currentColor" 
+      <pattern
+        id="hexagons"
+        width="50"
+        height="43.4"
+        patternUnits="userSpaceOnUse"
+        patternTransform="scale(2)"
+      >
+        <polygon
+          points="25,0 50,12.5 50,37.5 25,50 0,37.5 0,12.5"
+          fill="none"
+          stroke="currentColor"
           strokeWidth="0.5"
           className="text-primary"
         />
       </pattern>
     </defs>
-    <rect width="100%" height="100%" fill="url(#hexagons)" />
+    <rect
+      width="100%"
+      height="100%"
+      fill="url(#hexagons)"
+    />
   </svg>
 );
 
 // AI Neural Network Visual
 const NeuralNetwork = () => {
   const nodes = [
-    { x: 20, y: 30 }, { x: 35, y: 20 }, { x: 50, y: 35 },
-    { x: 65, y: 25 }, { x: 80, y: 30 }, { x: 30, y: 50 },
-    { x: 45, y: 60 }, { x: 60, y: 55 }, { x: 75, y: 65 },
-    { x: 40, y: 80 }, { x: 55, y: 75 }, { x: 70, y: 85 },
+    { x: 20, y: 30 },
+    { x: 35, y: 20 },
+    { x: 50, y: 35 },
+    { x: 65, y: 25 },
+    { x: 80, y: 30 },
+    { x: 30, y: 50 },
+    { x: 45, y: 60 },
+    { x: 60, y: 55 },
+    { x: 75, y: 65 },
+    { x: 40, y: 80 },
+    { x: 55, y: 75 },
+    { x: 70, y: 85 },
   ];
 
   return (
     <svg className="absolute inset-0 w-full h-full opacity-30 pointer-events-none">
-      {nodes.map((node, i) => (
+      {nodes.map((node, i) =>
         nodes.slice(i + 1).map((target, j) => (
           <motion.line
             key={`${i}-${j}`}
@@ -130,8 +169,8 @@ const NeuralNetwork = () => {
               ease: "easeInOut",
             }}
           />
-        ))
-      ))}
+        )),
+      )}
       {nodes.map((node, i) => (
         <motion.circle
           key={i}
@@ -140,7 +179,7 @@ const NeuralNetwork = () => {
           r="4"
           fill="hsl(210 100% 50%)"
           initial={{ scale: 0 }}
-          animate={{ 
+          animate={{
             scale: [1, 1.5, 1],
             opacity: [0.5, 1, 0.5],
           }}
@@ -153,10 +192,28 @@ const NeuralNetwork = () => {
         />
       ))}
       <defs>
-        <linearGradient id="lineGradient" x1="0%" y1="0%" x2="100%" y2="0%">
-          <stop offset="0%" stopColor="hsl(210 100% 50%)" stopOpacity="0.3" />
-          <stop offset="50%" stopColor="hsl(220 100% 60%)" stopOpacity="0.6" />
-          <stop offset="100%" stopColor="hsl(210 100% 50%)" stopOpacity="0.3" />
+        <linearGradient
+          id="lineGradient"
+          x1="0%"
+          y1="0%"
+          x2="100%"
+          y2="0%"
+        >
+          <stop
+            offset="0%"
+            stopColor="hsl(210 100% 50%)"
+            stopOpacity="0.3"
+          />
+          <stop
+            offset="50%"
+            stopColor="hsl(220 100% 60%)"
+            stopOpacity="0.6"
+          />
+          <stop
+            offset="100%"
+            stopColor="hsl(210 100% 50%)"
+            stopOpacity="0.3"
+          />
         </linearGradient>
       </defs>
     </svg>
@@ -164,7 +221,13 @@ const NeuralNetwork = () => {
 };
 
 // Animated Counter
-const AnimatedCounter = ({ value, suffix = "" }: { value: number; suffix?: string }) => {
+const AnimatedCounter = ({
+  value,
+  suffix = "",
+}: {
+  value: number;
+  suffix?: string;
+}) => {
   const [count, setCount] = useState(0);
 
   useEffect(() => {
@@ -172,7 +235,7 @@ const AnimatedCounter = ({ value, suffix = "" }: { value: number; suffix?: strin
     const end = value;
     const duration = 2500;
     const increment = end / (duration / 16);
-    
+
     const timer = setInterval(() => {
       start += increment;
       if (start >= end) {
@@ -186,7 +249,12 @@ const AnimatedCounter = ({ value, suffix = "" }: { value: number; suffix?: strin
     return () => clearInterval(timer);
   }, [value]);
 
-  return <span>{count.toLocaleString()}{suffix}</span>;
+  return (
+    <span>
+      {count.toLocaleString()}
+      {suffix}
+    </span>
+  );
 };
 
 // Typing Effect
@@ -197,50 +265,143 @@ const TypingEffect = ({ texts }: { texts: string[] }) => {
 
   useEffect(() => {
     const currentText = texts[currentIndex];
-    
-    const timeout = setTimeout(() => {
-      if (!isDeleting) {
-        if (displayText.length < currentText.length) {
-          setDisplayText(currentText.slice(0, displayText.length + 1));
+
+    const timeout = setTimeout(
+      () => {
+        if (!isDeleting) {
+          if (displayText.length < currentText.length) {
+            setDisplayText(currentText.slice(0, displayText.length + 1));
+          } else {
+            setTimeout(() => setIsDeleting(true), 2000);
+          }
         } else {
-          setTimeout(() => setIsDeleting(true), 2000);
+          if (displayText.length > 0) {
+            setDisplayText(displayText.slice(0, -1));
+          } else {
+            setIsDeleting(false);
+            setCurrentIndex((prev) => (prev + 1) % texts.length);
+          }
         }
-      } else {
-        if (displayText.length > 0) {
-          setDisplayText(displayText.slice(0, -1));
-        } else {
-          setIsDeleting(false);
-          setCurrentIndex((prev) => (prev + 1) % texts.length);
-        }
-      }
-    }, isDeleting ? 50 : 100);
+      },
+      isDeleting ? 50 : 100,
+    );
 
     return () => clearTimeout(timeout);
   }, [displayText, isDeleting, currentIndex, texts]);
 
-  return (
-    <span className="holo-text cursor-blink">{displayText}</span>
-  );
+  return <span className="holo-text cursor-blink">{displayText}</span>;
 };
 
 // Generate 180 domains for sale (3 pages × 60 domains)
 const generateDomainsForSale = () => {
-  const extensions = [".com", ".io", ".ai", ".dev", ".app", ".tech", ".net", ".co", ".xyz", ".org"];
-  const prefixes = [
-    "tech", "digital", "cloud", "ai", "data", "web", "app", "code", "dev", "net",
-    "smart", "fast", "secure", "pro", "max", "ultra", "prime", "elite", "vip", "gold",
-    "blue", "green", "red", "black", "white", "new", "best", "top", "super", "mega",
-    "start", "build", "create", "make", "get", "buy", "sell", "trade", "market", "shop",
-    "learn", "teach", "study", "work", "play", "game", "fun", "cool", "hot", "fire",
-    "star", "moon", "sun", "earth", "space", "time", "life", "love", "hope", "dream",
-    "power", "force", "energy", "light", "dark", "night", "day", "time", "now", "next",
-    "first", "last", "big", "small", "new", "old", "good", "best", "top", "win",
-    "one", "two", "three", "four", "five", "six", "seven", "eight", "nine", "ten"
+  const extensions = [
+    ".com",
+    ".io",
+    ".ai",
+    ".dev",
+    ".app",
+    ".tech",
+    ".net",
+    ".co",
+    ".xyz",
+    ".org",
   ];
-  
+  const prefixes = [
+    "tech",
+    "digital",
+    "cloud",
+    "ai",
+    "data",
+    "web",
+    "app",
+    "code",
+    "dev",
+    "net",
+    "smart",
+    "fast",
+    "secure",
+    "pro",
+    "max",
+    "ultra",
+    "prime",
+    "elite",
+    "vip",
+    "gold",
+    "blue",
+    "green",
+    "red",
+    "black",
+    "white",
+    "new",
+    "best",
+    "top",
+    "super",
+    "mega",
+    "start",
+    "build",
+    "create",
+    "make",
+    "get",
+    "buy",
+    "sell",
+    "trade",
+    "market",
+    "shop",
+    "learn",
+    "teach",
+    "study",
+    "work",
+    "play",
+    "game",
+    "fun",
+    "cool",
+    "hot",
+    "fire",
+    "star",
+    "moon",
+    "sun",
+    "earth",
+    "space",
+    "time",
+    "life",
+    "love",
+    "hope",
+    "dream",
+    "power",
+    "force",
+    "energy",
+    "light",
+    "dark",
+    "night",
+    "day",
+    "time",
+    "now",
+    "next",
+    "first",
+    "last",
+    "big",
+    "small",
+    "new",
+    "old",
+    "good",
+    "best",
+    "top",
+    "win",
+    "one",
+    "two",
+    "three",
+    "four",
+    "five",
+    "six",
+    "seven",
+    "eight",
+    "nine",
+    "ten",
+  ];
+
   const domains: string[] = [];
   let count = 0;
-  
+
   for (const prefix of prefixes) {
     for (const ext of extensions) {
       if (count >= 180) break;
@@ -249,7 +410,7 @@ const generateDomainsForSale = () => {
     }
     if (count >= 180) break;
   }
-  
+
   return domains;
 };
 
@@ -257,12 +418,14 @@ const Index = () => {
   const { t } = useTranslation();
   const navigate = useNavigate();
   const [searchQuery, setSearchQuery] = useState("");
-  const [activeTab, setActiveTab] = useState<"register" | "transfer">("register");
+  const [activeTab, setActiveTab] = useState<"register" | "transfer">(
+    "register",
+  );
   const [showResults, setShowResults] = useState(false);
   const [cart, setCart] = useState<string[]>([]);
   const [isSearching, setIsSearching] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
-  
+
   const domainsForSale = generateDomainsForSale();
   const domainsPerPage = 60;
   const totalPages = Math.ceil(domainsForSale.length / domainsPerPage);
@@ -277,16 +440,56 @@ const Index = () => {
     t("nav.cloud"),
     t("nav.aiEngine"),
   ];
-  
+
   const domainResults = [
-    { domain: `${searchQuery || "domainput"}.com`, available: true, price: 9.99, popular: true },
-    { domain: `${searchQuery || "domainput"}.io`, available: true, price: 34.99, popular: true },
-    { domain: `${searchQuery || "domainput"}.ai`, available: true, price: 79.99, popular: false },
-    { domain: `${searchQuery || "domainput"}.dev`, available: false, price: 14.99, popular: false },
-    { domain: `${searchQuery || "domainput"}.app`, available: true, price: 16.99, popular: false },
-    { domain: `${searchQuery || "domainput"}.tech`, available: true, price: 4.99, popular: false },
-    { domain: `${searchQuery || "domainput"}.co`, available: false, price: 29.99, popular: true },
-    { domain: `${searchQuery || "domainput"}.net`, available: true, price: 11.99, popular: false },
+    {
+      domain: `${searchQuery || "domainput"}.com`,
+      available: true,
+      price: 9.99,
+      popular: true,
+    },
+    {
+      domain: `${searchQuery || "domainput"}.io`,
+      available: true,
+      price: 34.99,
+      popular: true,
+    },
+    {
+      domain: `${searchQuery || "domainput"}.ai`,
+      available: true,
+      price: 79.99,
+      popular: false,
+    },
+    {
+      domain: `${searchQuery || "domainput"}.dev`,
+      available: false,
+      price: 14.99,
+      popular: false,
+    },
+    {
+      domain: `${searchQuery || "domainput"}.app`,
+      available: true,
+      price: 16.99,
+      popular: false,
+    },
+    {
+      domain: `${searchQuery || "domainput"}.tech`,
+      available: true,
+      price: 4.99,
+      popular: false,
+    },
+    {
+      domain: `${searchQuery || "domainput"}.co`,
+      available: false,
+      price: 29.99,
+      popular: true,
+    },
+    {
+      domain: `${searchQuery || "domainput"}.net`,
+      available: true,
+      price: 11.99,
+      popular: false,
+    },
   ];
 
   const features = [
@@ -295,29 +498,29 @@ const Index = () => {
       title: t("features.neuralDNS.title"),
       description: t("features.neuralDNS.description"),
       stats: "0.001ms",
-      color: "from-blue-500 to-blue-600"
+      color: "from-blue-500 to-blue-600",
     },
     {
       icon: Shield,
       title: t("features.quantumShield.title"),
       description: t("features.quantumShield.description"),
       stats: "256-QBit",
-      color: "from-blue-600 to-blue-700"
+      color: "from-blue-600 to-blue-700",
     },
     {
       icon: Network,
       title: t("features.meshNetwork.title"),
       description: t("features.meshNetwork.description"),
       stats: "500+ Nodes",
-      color: "from-blue-400 to-blue-500"
+      color: "from-blue-400 to-blue-500",
     },
     {
       icon: Cpu,
       title: t("features.edgeCompute.title"),
       description: t("features.edgeCompute.description"),
       stats: "< 1ms",
-      color: "from-blue-500 to-blue-600"
-    }
+      color: "from-blue-500 to-blue-600",
+    },
   ];
 
   const extensions = [
@@ -332,7 +535,12 @@ const Index = () => {
   ];
 
   const stats = [
-    { value: 2500000, label: t("stats.domainsIndexed"), suffix: "+", icon: Globe },
+    {
+      value: 2500000,
+      label: t("stats.domainsIndexed"),
+      suffix: "+",
+      icon: Globe,
+    },
     { value: 150000, label: t("stats.aiPredictions"), suffix: "", icon: Brain },
     { value: 99.999, label: t("stats.uptimeSLA"), suffix: "%", icon: Radio },
     { value: 500, label: t("stats.edgeLocations"), suffix: "+", icon: Wifi },
@@ -362,7 +570,7 @@ const Index = () => {
   };
 
   const removeFromCart = (domain: string) => {
-    setCart(cart.filter(d => d !== domain));
+    setCart(cart.filter((d) => d !== domain));
   };
 
   return (
@@ -373,7 +581,7 @@ const Index = () => {
       <FloatingParticles />
 
       {/* Navigation */}
-      <motion.nav 
+      <motion.nav
         initial={{ y: -100, opacity: 0 }}
         animate={{ y: 0, opacity: 1 }}
         transition={{ duration: 1, ease: "easeOut" }}
@@ -382,30 +590,36 @@ const Index = () => {
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <motion.div 
+            <motion.div
               className="flex items-center gap-3"
               whileHover={{ scale: 1.05 }}
             >
-              <motion.div 
+              <motion.div
                 className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-600 to-blue-500 flex items-center justify-center relative overflow-hidden shadow-lg"
                 whileHover={{ boxShadow: "0 0 30px hsl(210 100% 50% / 0.6)" }}
               >
                 <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent"></div>
-                <span className="text-3xl font-black text-white relative z-10 tracking-tight">D</span>
+                <span className="text-3xl font-black text-white relative z-10 tracking-tight">
+                  D
+                </span>
                 <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/30"></div>
               </motion.div>
               <div className="flex flex-col">
-                <span className="text-xl font-bold font-display text-foreground tracking-wide">DOMAINPUT</span>
-                <span className="text-[10px] text-muted-foreground tracking-wider">AI DOMAIN ENGINE</span>
+                <span className="text-xl font-bold font-display text-foreground tracking-wide">
+                  DOMAINPUT
+                </span>
+                <span className="text-[10px] text-muted-foreground tracking-wider">
+                  AI DOMAIN ENGINE
+                </span>
               </div>
             </motion.div>
 
             {/* Nav Links */}
             <div className="hidden lg:flex items-center gap-8">
               {navItems.map((item, i) => (
-                <motion.a 
-                  key={item} 
-                  href="#" 
+                <motion.a
+                  key={item}
+                  href="#"
                   className="nav-ultra font-display"
                   initial={{ opacity: 0, y: -20 }}
                   animate={{ opacity: 1, y: 0 }}
@@ -421,14 +635,14 @@ const Index = () => {
             <div className="flex items-center gap-4">
               <LanguageSwitcher />
               {cart.length > 0 && (
-                <motion.button 
+                <motion.button
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
                   className="relative p-3 glass-ultra rounded-xl"
                   whileHover={{ scale: 1.1 }}
                 >
                   <ShoppingCart className="w-5 h-5 text-primary" />
-                  <motion.span 
+                  <motion.span
                     initial={{ scale: 0 }}
                     animate={{ scale: 1 }}
                     className="absolute -top-2 -right-2 w-6 h-6 rounded-full bg-accent text-xs font-bold flex items-center justify-center font-display"
@@ -437,7 +651,7 @@ const Index = () => {
                   </motion.span>
                 </motion.button>
               )}
-              <motion.button 
+              <motion.button
                 whileHover={{ scale: 1.05, y: -2 }}
                 whileTap={{ scale: 0.95 }}
                 className="btn-neon-ultra px-8 py-3 rounded-xl text-sm font-bold text-primary-foreground font-display tracking-widest relative overflow-hidden"
@@ -452,12 +666,12 @@ const Index = () => {
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center pt-24 pb-12 cyber-grid overflow-hidden">
         {/* Background Image */}
-        <div 
+        <div
           className="absolute inset-0 bg-cover bg-center opacity-30"
           style={{ backgroundImage: `url(${heroBg})` }}
         />
         <div className="absolute inset-0 bg-gradient-to-b from-background/40 via-background/70 to-background" />
-        
+
         {/* Hex Grid - Simplified */}
         <HexGrid />
 
@@ -468,7 +682,7 @@ const Index = () => {
         {/* Content */}
         <div className="relative z-10 container mx-auto px-6 text-center">
           {/* AI Status Badge */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, scale: 0.8 }}
             animate={{ opacity: 1, scale: 1 }}
             transition={{ duration: 1 }}
@@ -481,13 +695,17 @@ const Index = () => {
             >
               <Brain className="w-5 h-5 text-primary" />
             </motion.div>
-            <span className="text-sm text-muted-foreground font-medium tracking-wide">{t("hero.aiStatus")}</span>
-            <motion.div 
+            <span className="text-sm text-muted-foreground font-medium tracking-wide">
+              {t("hero.aiStatus")}
+            </span>
+            <motion.div
               className="w-2 h-2 rounded-full bg-blue-400"
               animate={{ opacity: [1, 0.3, 1] }}
               transition={{ duration: 1, repeat: Infinity }}
             />
-            <span className="cyber-tag px-3 py-1 rounded-full">{t("hero.version")}</span>
+            <span className="cyber-tag px-3 py-1 rounded-full">
+              {t("hero.version")}
+            </span>
           </motion.div>
 
           {/* Main Headline */}
@@ -499,24 +717,24 @@ const Index = () => {
           >
             <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold font-display tracking-tight mb-4">
               <span className="text-foreground block">{t("hero.claim")}</span>
-              <span className="holo-text block">
-                {t("hero.theFuture")}
-              </span>
+              <span className="holo-text block">{t("hero.theFuture")}</span>
             </h1>
           </motion.div>
 
           {/* Dynamic Subheadline */}
-          <motion.p 
+          <motion.p
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.6 }}
             className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-14 font-light"
           >
-            {t("hero.subtitle").split("{{text}}")[0]} <TypingEffect texts={typingTexts} /> {t("hero.subtitle").split("{{text}}")[1]}
+            {t("hero.subtitle").split("{{text}}")[0]}{" "}
+            <TypingEffect texts={typingTexts} />{" "}
+            {t("hero.subtitle").split("{{text}}")[1]}
           </motion.p>
 
           {/* Tab Switcher */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.8 }}
@@ -527,8 +745,8 @@ const Index = () => {
                 key={tab}
                 onClick={() => setActiveTab(tab as "register" | "transfer")}
                 className={`px-10 py-4 rounded-full text-sm font-bold uppercase tracking-[0.2em] transition-all font-display ${
-                  activeTab === tab 
-                    ? "btn-neon-ultra text-primary-foreground" 
+                  activeTab === tab
+                    ? "btn-neon-ultra text-primary-foreground"
                     : "text-muted-foreground hover:text-foreground"
                 }`}
                 whileHover={{ scale: activeTab === tab ? 1 : 1.05 }}
@@ -540,7 +758,7 @@ const Index = () => {
           </motion.div>
 
           {/* Search Bar */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 40 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 1 }}
@@ -550,7 +768,11 @@ const Index = () => {
               <div className="flex-1 flex items-center gap-4 px-6">
                 <motion.div
                   animate={{ rotate: isSearching ? 360 : 0 }}
-                  transition={{ duration: 1, repeat: isSearching ? Infinity : 0, ease: "linear" }}
+                  transition={{
+                    duration: 1,
+                    repeat: isSearching ? Infinity : 0,
+                    ease: "linear",
+                  }}
                 >
                   <Search className="w-6 h-6 text-primary" />
                 </motion.div>
@@ -563,7 +785,7 @@ const Index = () => {
                   className="w-full bg-transparent border-none outline-none text-foreground placeholder:text-muted-foreground text-xl font-light tracking-wide"
                 />
               </div>
-              <motion.button 
+              <motion.button
                 whileHover={{ scale: 1.02 }}
                 whileTap={{ scale: 0.98 }}
                 onClick={handleSearch}
@@ -574,15 +796,23 @@ const Index = () => {
                   <motion.div className="flex items-center gap-3">
                     <motion.div
                       animate={{ rotate: 360 }}
-                      transition={{ duration: 0.8, repeat: Infinity, ease: "linear" }}
+                      transition={{
+                        duration: 0.8,
+                        repeat: Infinity,
+                        ease: "linear",
+                      }}
                     >
                       <Cpu className="w-5 h-5" />
                     </motion.div>
-                    <span className="font-display tracking-widest">{t("hero.scanning")}</span>
+                    <span className="font-display tracking-widest">
+                      {t("hero.scanning")}
+                    </span>
                   </motion.div>
                 ) : (
                   <>
-                    <span className="font-display tracking-widest relative z-10">{t("hero.analyze")}</span>
+                    <span className="font-display tracking-widest relative z-10">
+                      {t("hero.analyze")}
+                    </span>
                     <ArrowRight className="w-5 h-5 relative z-10" />
                   </>
                 )}
@@ -591,14 +821,14 @@ const Index = () => {
           </motion.div>
 
           {/* Extension Pills */}
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 1.2 }}
             className="flex flex-wrap items-center justify-center gap-3 mt-10"
           >
             {extensions.map((item, i) => (
-              <motion.div 
+              <motion.div
                 key={item.ext}
                 initial={{ opacity: 0, scale: 0.8, y: 20 }}
                 animate={{ opacity: 1, scale: 1, y: 0 }}
@@ -607,10 +837,16 @@ const Index = () => {
                 className="ext-badge-ultra px-5 py-3 rounded-full flex items-center gap-3 cursor-pointer"
               >
                 <Check className="w-4 h-4 text-primary" />
-                <span className="text-sm font-bold text-foreground font-display">{item.ext}</span>
-                <span className="text-sm text-muted-foreground">${item.price}</span>
+                <span className="text-sm font-bold text-foreground font-display">
+                  {item.ext}
+                </span>
+                <span className="text-sm text-muted-foreground">
+                  ${item.price}
+                </span>
                 {item.discount && (
-                  <span className="cyber-tag px-2 py-0.5 rounded text-[9px]">{item.discount}</span>
+                  <span className="cyber-tag px-2 py-0.5 rounded text-[9px]">
+                    {item.discount}
+                  </span>
                 )}
               </motion.div>
             ))}
@@ -630,16 +866,21 @@ const Index = () => {
                     <div className="flex items-center gap-4">
                       <motion.div
                         animate={{ rotate: 360 }}
-                        transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+                        transition={{
+                          duration: 3,
+                          repeat: Infinity,
+                          ease: "linear",
+                        }}
                       >
                         <Eye className="w-6 h-6 text-primary" />
                       </motion.div>
                       <h3 className="font-display text-xl tracking-wide">
-                        {t("search.aiAnalysis")}: "<span className="holo-text">{searchQuery}</span>"
+                        {t("search.aiAnalysis")}: "
+                        <span className="holo-text">{searchQuery}</span>"
                       </h3>
                     </div>
-                    <motion.button 
-                      onClick={() => setShowResults(false)} 
+                    <motion.button
+                      onClick={() => setShowResults(false)}
                       className="p-2 hover:bg-muted rounded-lg transition-colors"
                       whileHover={{ scale: 1.1, rotate: 90 }}
                     >
@@ -653,16 +894,26 @@ const Index = () => {
                         initial={{ opacity: 0, x: -30 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ delay: i * 0.08 }}
-                        className={`domain-result-ultra ${result.available ? 'available' : 'taken'} rounded-2xl p-5 flex items-center justify-between`}
+                        className={`domain-result-ultra ${result.available ? "available" : "taken"} rounded-2xl p-5 flex items-center justify-between`}
                       >
                         <div className="flex items-center gap-5">
-                          <motion.div 
+                          <motion.div
                             className={`w-12 h-12 rounded-xl flex items-center justify-center ${
-                              result.available ? 'bg-blue-500/20' : 'bg-blue-500/10'
+                              result.available
+                                ? "bg-blue-500/20"
+                                : "bg-blue-500/10"
                             }`}
-                            animate={result.available ? { 
-                              boxShadow: ["0 0 0px hsl(210 100% 50% / 0)", "0 0 20px hsl(210 100% 50% / 0.5)", "0 0 0px hsl(210 100% 50% / 0)"] 
-                            } : {}}
+                            animate={
+                              result.available
+                                ? {
+                                    boxShadow: [
+                                      "0 0 0px hsl(210 100% 50% / 0)",
+                                      "0 0 20px hsl(210 100% 50% / 0.5)",
+                                      "0 0 0px hsl(210 100% 50% / 0)",
+                                    ],
+                                  }
+                                : {}
+                            }
                             transition={{ duration: 2, repeat: Infinity }}
                           >
                             {result.available ? (
@@ -672,17 +923,25 @@ const Index = () => {
                             )}
                           </motion.div>
                           <div>
-                            <p className="font-bold text-foreground text-lg font-display tracking-wide">{result.domain}</p>
+                            <p className="font-bold text-foreground text-lg font-display tracking-wide">
+                              {result.domain}
+                            </p>
                             <p className="text-sm text-muted-foreground">
-                              {result.available ? `✓ ${t("search.available")}` : `✗ ${t("search.alreadyRegistered")}`}
+                              {result.available
+                                ? `✓ ${t("search.available")}`
+                                : `✗ ${t("search.alreadyRegistered")}`}
                               {result.popular && ` • ${t("search.trending")}`}
                             </p>
                           </div>
                         </div>
                         <div className="flex items-center gap-5">
                           <div className="text-right">
-                            <span className="font-display text-2xl font-bold holo-text">${result.price}</span>
-                            <p className="text-xs text-muted-foreground">{t("search.year")}</p>
+                            <span className="font-display text-2xl font-bold holo-text">
+                              ${result.price}
+                            </span>
+                            <p className="text-xs text-muted-foreground">
+                              {t("search.year")}
+                            </p>
                           </div>
                           {result.available && (
                             <motion.button
@@ -696,7 +955,9 @@ const Index = () => {
                                   : "btn-neon-ultra text-primary-foreground"
                               }`}
                             >
-                              {cart.includes(result.domain) ? t("search.added") : t("search.acquire")}
+                              {cart.includes(result.domain)
+                                ? t("search.added")
+                                : t("search.acquire")}
                             </motion.button>
                           )}
                         </div>
@@ -710,7 +971,7 @@ const Index = () => {
 
           {/* Scroll Indicator */}
           {!showResults && (
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 2 }}
@@ -721,7 +982,9 @@ const Index = () => {
                 transition={{ duration: 2, repeat: Infinity }}
                 className="flex flex-col items-center gap-2"
               >
-                <span className="text-xs text-muted-foreground font-display tracking-widest">{t("hero.explore")}</span>
+                <span className="text-xs text-muted-foreground font-display tracking-widest">
+                  {t("hero.explore")}
+                </span>
                 <ChevronDown className="w-6 h-6 text-primary" />
               </motion.div>
             </motion.div>
@@ -732,9 +995,9 @@ const Index = () => {
       {/* Stats Section */}
       <section className="relative py-24 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-background via-card/50 to-background" />
-        
+
         <div className="relative z-10 container mx-auto px-6">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0 }}
             whileInView={{ opacity: 1 }}
             viewport={{ once: true }}
@@ -749,16 +1012,21 @@ const Index = () => {
                 transition={{ delay: i * 0.15 }}
                 className="text-center glass-ultra p-8 rounded-2xl"
               >
-                <motion.div 
+                <motion.div
                   className="w-14 h-14 mx-auto mb-4 rounded-xl bg-primary/10 flex items-center justify-center"
                   whileHover={{ scale: 1.1, rotate: 10 }}
                 >
                   <stat.icon className="w-7 h-7 text-primary" />
                 </motion.div>
                 <p className="stat-value-ultra text-4xl md:text-5xl font-bold mb-2">
-                  <AnimatedCounter value={stat.value} suffix={stat.suffix} />
+                  <AnimatedCounter
+                    value={stat.value}
+                    suffix={stat.suffix}
+                  />
                 </p>
-                <p className="text-muted-foreground text-xs uppercase tracking-[0.2em] font-display">{stat.label}</p>
+                <p className="text-muted-foreground text-xs uppercase tracking-[0.2em] font-display">
+                  {stat.label}
+                </p>
               </motion.div>
             ))}
           </motion.div>
@@ -769,17 +1037,23 @@ const Index = () => {
       <section className="relative py-32 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background" />
         <HexGrid />
-        
+
         <div className="relative z-10 container mx-auto px-6">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-center mb-20"
           >
-            <motion.span 
+            <motion.span
               className="cyber-tag px-6 py-2 rounded-full inline-block mb-6"
-              animate={{ boxShadow: ["0 0 0px hsl(210 100% 50% / 0)", "0 0 20px hsl(210 100% 50% / 0.5)", "0 0 0px hsl(210 100% 50% / 0)"] }}
+              animate={{
+                boxShadow: [
+                  "0 0 0px hsl(210 100% 50% / 0)",
+                  "0 0 20px hsl(210 100% 50% / 0.5)",
+                  "0 0 0px hsl(210 100% 50% / 0)",
+                ],
+              }}
               transition={{ duration: 2, repeat: Infinity }}
             >
               {t("features.sectionTitle")}
@@ -806,17 +1080,23 @@ const Index = () => {
                 className="card-holo p-8 rounded-3xl group"
               >
                 <div className="flex items-start justify-between mb-8">
-                  <motion.div 
+                  <motion.div
                     className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${feature.color} flex items-center justify-center shadow-lg`}
                     whileHover={{ rotate: 360, scale: 1.1 }}
                     transition={{ duration: 0.6 }}
                   >
                     <feature.icon className="w-8 h-8 text-white" />
                   </motion.div>
-                  <span className="font-display text-3xl font-bold holo-text">{feature.stats}</span>
+                  <span className="font-display text-3xl font-bold holo-text">
+                    {feature.stats}
+                  </span>
                 </div>
-                <h3 className="text-2xl font-bold text-foreground mb-4 font-display tracking-wide">{feature.title}</h3>
-                <p className="text-muted-foreground leading-relaxed">{feature.description}</p>
+                <h3 className="text-2xl font-bold text-foreground mb-4 font-display tracking-wide">
+                  {feature.title}
+                </h3>
+                <p className="text-muted-foreground leading-relaxed">
+                  {feature.description}
+                </p>
               </motion.div>
             ))}
           </div>
@@ -826,17 +1106,20 @@ const Index = () => {
       {/* Extensions Section */}
       <section className="relative py-32">
         <div className="absolute inset-0 bg-gradient-to-b from-background via-accent/5 to-background" />
-        
+
         <div className="relative z-10 container mx-auto px-6">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <span className="cyber-tag px-6 py-2 rounded-full inline-block mb-6">{t("extensions.title")}</span>
+            <span className="cyber-tag px-6 py-2 rounded-full inline-block mb-6">
+              {t("extensions.title")}
+            </span>
             <h2 className="text-5xl md:text-7xl font-bold font-display mb-6">
-              <span className="text-foreground">{t("extensions.premium")}</span> <span className="holo-text">{t("extensions.tlds")}</span>
+              <span className="text-foreground">{t("extensions.premium")}</span>{" "}
+              <span className="holo-text">{t("extensions.tlds")}</span>
             </h2>
           </motion.div>
 
@@ -859,7 +1142,9 @@ const Index = () => {
                 <span className="text-3xl font-bold holo-text font-display block mb-2">
                   {item.ext}
                 </span>
-                <p className="text-sm text-muted-foreground">${item.price}/yr</p>
+                <p className="text-sm text-muted-foreground">
+                  ${item.price}/yr
+                </p>
               </motion.div>
             ))}
           </div>
@@ -870,17 +1155,20 @@ const Index = () => {
       <section className="relative py-32 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/5 to-background" />
         <HexGrid />
-        
+
         <div className="relative z-10 container mx-auto px-6">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <span className="cyber-tag px-6 py-2 rounded-full inline-block mb-6">DOMAINS FOR SALE</span>
+            <span className="cyber-tag px-6 py-2 rounded-full inline-block mb-6">
+              DOMAINS FOR SALE
+            </span>
             <h2 className="text-5xl md:text-7xl font-bold font-display mb-6">
-              <span className="text-foreground">PREMIUM</span> <span className="holo-text">DOMAINS</span>
+              <span className="text-foreground">PREMIUM</span>{" "}
+              <span className="holo-text">DOMAINS</span>
             </h2>
             <p className="text-xl text-muted-foreground max-w-2xl mx-auto font-light">
               Browse our collection of premium domains available for purchase
@@ -984,12 +1272,14 @@ const Index = () => {
           {totalPages > 1 && (
             <div className="flex items-center justify-center gap-4 mt-12">
               <motion.button
-                onClick={() => setCurrentPage(prev => Math.max(1, prev - 1))}
+                onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
                 disabled={currentPage === 1}
                 whileHover={{ scale: currentPage > 1 ? 1.05 : 1 }}
                 whileTap={{ scale: currentPage > 1 ? 0.95 : 1 }}
                 className={`p-3 rounded-xl glass-ultra flex items-center gap-2 ${
-                  currentPage === 1 ? 'opacity-50 cursor-not-allowed' : 'hover:border-primary/50'
+                  currentPage === 1
+                    ? "opacity-50 cursor-not-allowed"
+                    : "hover:border-primary/50"
                 } transition-colors`}
               >
                 <ChevronLeft className="w-5 h-5" />
@@ -997,30 +1287,36 @@ const Index = () => {
               </motion.button>
 
               <div className="flex items-center gap-2">
-                {Array.from({ length: totalPages }, (_, i) => i + 1).map((page) => (
-                  <motion.button
-                    key={page}
-                    onClick={() => setCurrentPage(page)}
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                    className={`w-10 h-10 rounded-xl font-display text-sm transition-all ${
-                      currentPage === page
-                        ? 'btn-neon-ultra text-primary-foreground'
-                        : 'glass-ultra hover:border-primary/50'
-                    }`}
-                  >
-                    {page}
-                  </motion.button>
-                ))}
+                {Array.from({ length: totalPages }, (_, i) => i + 1).map(
+                  (page) => (
+                    <motion.button
+                      key={page}
+                      onClick={() => setCurrentPage(page)}
+                      whileHover={{ scale: 1.1 }}
+                      whileTap={{ scale: 0.95 }}
+                      className={`w-10 h-10 rounded-xl font-display text-sm transition-all ${
+                        currentPage === page
+                          ? "btn-neon-ultra text-primary-foreground"
+                          : "glass-ultra hover:border-primary/50"
+                      }`}
+                    >
+                      {page}
+                    </motion.button>
+                  ),
+                )}
               </div>
 
               <motion.button
-                onClick={() => setCurrentPage(prev => Math.min(totalPages, prev + 1))}
+                onClick={() =>
+                  setCurrentPage((prev) => Math.min(totalPages, prev + 1))
+                }
                 disabled={currentPage === totalPages}
                 whileHover={{ scale: currentPage < totalPages ? 1.05 : 1 }}
                 whileTap={{ scale: currentPage < totalPages ? 0.95 : 1 }}
                 className={`p-3 rounded-xl glass-ultra flex items-center gap-2 ${
-                  currentPage === totalPages ? 'opacity-50 cursor-not-allowed' : 'hover:border-primary/50'
+                  currentPage === totalPages
+                    ? "opacity-50 cursor-not-allowed"
+                    : "hover:border-primary/50"
                 } transition-colors`}
               >
                 <span className="font-display text-sm">Next</span>
@@ -1030,7 +1326,8 @@ const Index = () => {
           )}
 
           <div className="text-center mt-8 text-sm text-muted-foreground">
-            Showing {startIndex + 1}-{Math.min(endIndex, domainsForSale.length)} of {domainsForSale.length} domains
+            Showing {startIndex + 1}-{Math.min(endIndex, domainsForSale.length)}{" "}
+            of {domainsForSale.length} domains
           </div>
         </div>
       </section>
@@ -1038,25 +1335,43 @@ const Index = () => {
       {/* Testimonials */}
       <section className="relative py-32 overflow-hidden">
         <div className="absolute inset-0 bg-gradient-to-b from-background via-card/30 to-background" />
-        
+
         <div className="relative z-10 container mx-auto px-6">
-          <motion.div 
+          <motion.div
             initial={{ opacity: 0, y: 50 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             className="text-center mb-16"
           >
-            <span className="cyber-tag px-6 py-2 rounded-full inline-block mb-6">{t("testimonials.title")}</span>
+            <span className="cyber-tag px-6 py-2 rounded-full inline-block mb-6">
+              {t("testimonials.title")}
+            </span>
             <h2 className="text-5xl md:text-7xl font-bold font-display">
-              {t("testimonials.trustedBy")} <span className="holo-text">{t("testimonials.innovators")}</span>
+              {t("testimonials.trustedBy")}{" "}
+              <span className="holo-text">{t("testimonials.innovators")}</span>
             </h2>
           </motion.div>
 
           <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
             {[
-              { name: t("testimonials.testimonial1.name"), role: t("testimonials.testimonial1.role"), quote: t("testimonials.testimonial1.quote"), avatar: "🧠" },
-              { name: t("testimonials.testimonial2.name"), role: t("testimonials.testimonial2.role"), quote: t("testimonials.testimonial2.quote"), avatar: "⚡" },
-              { name: t("testimonials.testimonial3.name"), role: t("testimonials.testimonial3.role"), quote: t("testimonials.testimonial3.quote"), avatar: "🛡️" },
+              {
+                name: t("testimonials.testimonial1.name"),
+                role: t("testimonials.testimonial1.role"),
+                quote: t("testimonials.testimonial1.quote"),
+                avatar: "🧠",
+              },
+              {
+                name: t("testimonials.testimonial2.name"),
+                role: t("testimonials.testimonial2.role"),
+                quote: t("testimonials.testimonial2.quote"),
+                avatar: "⚡",
+              },
+              {
+                name: t("testimonials.testimonial3.name"),
+                role: t("testimonials.testimonial3.role"),
+                quote: t("testimonials.testimonial3.quote"),
+                avatar: "🛡️",
+              },
             ].map((testimonial, i) => (
               <motion.div
                 key={testimonial.name}
@@ -1079,14 +1394,20 @@ const Index = () => {
                     </motion.div>
                   ))}
                 </div>
-                <p className="text-muted-foreground mb-8 text-lg leading-relaxed italic">"{testimonial.quote}"</p>
+                <p className="text-muted-foreground mb-8 text-lg leading-relaxed italic">
+                  "{testimonial.quote}"
+                </p>
                 <div className="flex items-center gap-4">
                   <div className="w-14 h-14 rounded-2xl bg-primary/10 flex items-center justify-center text-2xl">
                     {testimonial.avatar}
                   </div>
                   <div>
-                    <p className="font-bold text-foreground font-display">{testimonial.name}</p>
-                    <p className="text-sm text-muted-foreground">{testimonial.role}</p>
+                    <p className="font-bold text-foreground font-display">
+                      {testimonial.name}
+                    </p>
+                    <p className="text-sm text-muted-foreground">
+                      {testimonial.role}
+                    </p>
                   </div>
                 </div>
               </motion.div>
@@ -1100,7 +1421,7 @@ const Index = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-background via-primary/10 to-background" />
         <NeuralNetwork />
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[1000px] h-[1000px] rounded-full bg-primary/20 blur-[200px] orb-float pointer-events-none" />
-        
+
         <div className="relative z-10 container mx-auto px-6 text-center">
           <motion.div
             initial={{ opacity: 0, y: 50 }}
@@ -1109,15 +1430,19 @@ const Index = () => {
           >
             <motion.div
               className="w-24 h-24 mx-auto mb-10 rounded-3xl btn-neon-ultra flex items-center justify-center"
-              animate={{ 
-                boxShadow: ["0 0 40px hsl(210 100% 50% / 0.5)", "0 0 80px hsl(210 100% 50% / 0.8)", "0 0 40px hsl(210 100% 50% / 0.5)"],
-                scale: [1, 1.05, 1]
+              animate={{
+                boxShadow: [
+                  "0 0 40px hsl(210 100% 50% / 0.5)",
+                  "0 0 80px hsl(210 100% 50% / 0.8)",
+                  "0 0 40px hsl(210 100% 50% / 0.5)",
+                ],
+                scale: [1, 1.05, 1],
               }}
               transition={{ duration: 3, repeat: Infinity }}
             >
               <Rocket className="w-12 h-12 text-primary-foreground" />
             </motion.div>
-            
+
             <h2 className="text-5xl md:text-7xl lg:text-8xl font-bold font-display mb-8">
               <span className="text-foreground">{t("cta.readyTo")}</span>
               <br />
@@ -1128,7 +1453,7 @@ const Index = () => {
               {t("cta.description")}
             </p>
             <div className="flex flex-col sm:flex-row items-center justify-center gap-6">
-              <motion.button 
+              <motion.button
                 whileHover={{ scale: 1.05, y: -3 }}
                 whileTap={{ scale: 0.95 }}
                 className="btn-neon-ultra px-14 py-6 rounded-2xl text-primary-foreground font-bold text-xl font-display tracking-widest flex items-center gap-4 relative overflow-hidden"
@@ -1136,7 +1461,7 @@ const Index = () => {
                 <span className="relative z-10">{t("nav.initialize")}</span>
                 <Sparkles className="w-6 h-6 relative z-10" />
               </motion.button>
-              <motion.button 
+              <motion.button
                 whileHover={{ scale: 1.05, y: -3 }}
                 whileTap={{ scale: 0.95 }}
                 className="glass-ultra px-14 py-6 rounded-2xl font-bold text-foreground font-display tracking-widest hover:border-primary/50 transition-colors"
@@ -1151,37 +1476,72 @@ const Index = () => {
       {/* Footer */}
       <footer className="relative py-20 border-t border-border/30">
         <div className="absolute inset-0 bg-gradient-to-t from-card/50 to-transparent" />
-        
+
         <div className="relative z-10 container mx-auto px-6">
           <div className="grid md:grid-cols-4 gap-12 mb-16">
             <div>
               <div className="flex items-center gap-3 mb-6">
                 <div className="w-12 h-12 rounded-xl bg-gradient-to-br from-blue-600 to-blue-500 flex items-center justify-center relative overflow-hidden shadow-lg">
                   <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent"></div>
-                  <span className="text-2xl font-black text-white relative z-10">D</span>
+                  <span className="text-2xl font-black text-white relative z-10">
+                    D
+                  </span>
                   <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/30"></div>
                 </div>
                 <div>
-                  <span className="text-lg font-bold font-display text-foreground">DOMAINPUT</span>
-                  <p className="text-[9px] text-muted-foreground tracking-wider">{t("footer.tagline")}</p>
+                  <span className="text-lg font-bold font-display text-foreground">
+                    DOMAINPUT
+                  </span>
+                  <p className="text-[9px] text-muted-foreground tracking-wider">
+                    {t("footer.tagline")}
+                  </p>
                 </div>
               </div>
               <p className="text-muted-foreground text-sm leading-relaxed">
                 {t("footer.description")}
               </p>
             </div>
-            
+
             {[
-              { title: t("footer.products"), links: [t("footer.domains"), t("footer.aiEngine"), t("footer.hosting"), t("footer.ssl")] },
-              { title: t("footer.company"), links: [t("footer.about"), t("footer.careers"), t("footer.press"), t("footer.partners")] },
-              { title: t("footer.support"), links: [t("footer.docs"), t("footer.api"), t("footer.status"), t("footer.contact")] },
+              {
+                title: t("footer.products"),
+                links: [
+                  t("footer.domains"),
+                  t("footer.aiEngine"),
+                  t("footer.hosting"),
+                  t("footer.ssl"),
+                ],
+              },
+              {
+                title: t("footer.company"),
+                links: [
+                  t("footer.about"),
+                  t("footer.careers"),
+                  t("footer.press"),
+                  t("footer.partners"),
+                ],
+              },
+              {
+                title: t("footer.support"),
+                links: [
+                  t("footer.docs"),
+                  t("footer.api"),
+                  t("footer.status"),
+                  t("footer.contact"),
+                ],
+              },
             ].map((section) => (
               <div key={section.title}>
-                <h4 className="font-display font-bold mb-6 text-foreground tracking-wider">{section.title}</h4>
+                <h4 className="font-display font-bold mb-6 text-foreground tracking-wider">
+                  {section.title}
+                </h4>
                 <ul className="space-y-4">
                   {section.links.map((link) => (
                     <li key={link}>
-                      <a href="#" className="text-muted-foreground hover:text-primary transition-colors text-sm tracking-wide">
+                      <a
+                        href="#"
+                        className="text-muted-foreground hover:text-primary transition-colors text-sm tracking-wide"
+                      >
                         {link}
                       </a>
                     </li>
@@ -1196,8 +1556,16 @@ const Index = () => {
               {t("footer.copyright")}
             </p>
             <div className="flex items-center gap-8">
-              {[t("footer.privacy"), t("footer.terms"), t("footer.cookies")].map((item) => (
-                <a key={item} href="#" className="text-sm text-muted-foreground hover:text-primary transition-colors tracking-wide">
+              {[
+                t("footer.privacy"),
+                t("footer.terms"),
+                t("footer.cookies"),
+              ].map((item) => (
+                <a
+                  key={item}
+                  href="#"
+                  className="text-sm text-muted-foreground hover:text-primary transition-colors tracking-wide"
+                >
                   {item}
                 </a>
               ))}
@@ -1216,21 +1584,27 @@ const Index = () => {
             className="fixed top-24 right-4 w-96 glass-ultra rounded-3xl p-6 z-40"
           >
             <div className="flex items-center justify-between mb-6">
-              <h3 className="font-display font-bold text-lg tracking-wider holo-text">{t("cart.yourDomains")}</h3>
-              <span className="cyber-tag px-3 py-1 rounded-full">{cart.length} {t("cart.items")}</span>
+              <h3 className="font-display font-bold text-lg tracking-wider holo-text">
+                {t("cart.yourDomains")}
+              </h3>
+              <span className="cyber-tag px-3 py-1 rounded-full">
+                {cart.length} {t("cart.items")}
+              </span>
             </div>
             <div className="space-y-3 mb-6 max-h-[300px] overflow-auto">
               {cart.map((domain) => (
-                <motion.div 
-                  key={domain} 
+                <motion.div
+                  key={domain}
                   initial={{ opacity: 0, x: 20 }}
                   animate={{ opacity: 1, x: 0 }}
                   exit={{ opacity: 0, x: -20 }}
                   className="flex items-center justify-between p-4 bg-muted/30 rounded-xl"
                 >
-                  <span className="text-sm font-medium font-display">{domain}</span>
-                  <motion.button 
-                    onClick={() => removeFromCart(domain)} 
+                  <span className="text-sm font-medium font-display">
+                    {domain}
+                  </span>
+                  <motion.button
+                    onClick={() => removeFromCart(domain)}
                     className="text-muted-foreground hover:text-accent transition-colors"
                     whileHover={{ scale: 1.2, rotate: 90 }}
                   >
@@ -1239,7 +1613,7 @@ const Index = () => {
                 </motion.div>
               ))}
             </div>
-            <motion.button 
+            <motion.button
               whileHover={{ scale: 1.02 }}
               whileTap={{ scale: 0.98 }}
               className="w-full btn-neon-ultra py-4 rounded-xl font-bold text-primary-foreground font-display tracking-widest"
