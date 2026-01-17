@@ -30,10 +30,20 @@ nextjs-app2/
 
 ### Component Architecture
 
+**CRITICAL: Component Migration Strategy**
+
+All components from `src/pages/Index.tsx` MUST be migrated exactly as-is to preserve the visual design and functionality. The migration should:
+
+1. **Preserve Component Structure**: Keep all inline components (DataStreams, FloatingParticles, HexGrid, NeuralNetwork, AnimatedCounter, TypingEffect) exactly as they appear in the original file
+2. **Maintain Styling**: Copy all className attributes, Tailwind classes, and inline styles without modification
+3. **Keep Animation Logic**: Preserve all framer-motion animations, transitions, and timing exactly as implemented
+4. **Preserve State Management**: Keep all useState, useEffect hooks and their logic unchanged
+5. **Maintain Data Structures**: Copy all data arrays (features, extensions, stats, testimonials, domains) with their exact structure
+
 ```mermaid
 graph TD
     A[RootLayout] --> B[HomePage]
-    B --> C[Header]
+    B --> C[Navigation]
     B --> D[HeroSection]
     B --> E[StatsSection]
     B --> F[FeaturesSection]
@@ -306,58 +316,51 @@ If any answer is "no" or uncertain, the component likely needs refactoring.
 
 ### Server vs Client Components Strategy
 
-**Principle: Keep Client Components as small as possible. Only wrap the interactive parts, not entire sections.**
+**CRITICAL UPDATE: Simplified Migration Approach**
 
-#### Granular Client Component Approach
+To ensure visual parity and avoid any differences in the migrated application, we will use a simplified approach:
 
-```
-Section (Server) → Contains static markup
-  └── InteractiveWrapper (Client) → Only the interactive part
-```
+**Primary Strategy: Keep Components As-Is**
 
-| Component                       | Rendering | Reason                        |
-| ------------------------------- | --------- | ----------------------------- |
-| **Layout Components**           |           |                               |
-| RootLayout                      | Server    | Static structure              |
-| Header (wrapper)                | Server    | Static nav structure          |
-| └── HeaderClient                | Client    | Cart icon, mobile menu state  |
-| └── LanguageSwitcher            | Client    | Language selection state      |
-| Footer                          | Server    | Fully static                  |
-| **Section Components**          |           |                               |
-| HeroSection (wrapper)           | Server    | Static headings, structure    |
-| └── SearchBar                   | Client    | Input state, search logic     |
-| └── SearchResults               | Client    | Results display, cart actions |
-| └── ExtensionPills              | Client    | Hover animations only         |
-| StatsSection (wrapper)          | Server    | Static grid structure         |
-| └── StatCard                    | Client    | AnimatedCounter only          |
-| FeaturesSection (wrapper)       | Server    | Static grid, headings         |
-| └── FeatureCard                 | Client    | Hover animations only         |
-| ExtensionsSection (wrapper)     | Server    | Static grid, headings         |
-| └── ExtensionCard               | Client    | Hover animations only         |
-| DomainsForSaleSection (wrapper) | Server    | Static headings               |
-| └── DomainsGrid                 | Client    | Pagination state              |
-| TestimonialsSection (wrapper)   | Server    | Static headings               |
-| └── TestimonialCard             | Client    | Star animations only          |
-| CTASection (wrapper)            | Server    | Static headings, buttons      |
-| └── CTAAnimations               | Client    | Rocket animation              |
-| **Effect Components**           |           |                               |
-| BackgroundEffects               | Client    | All animations                |
-| DataStreams                     | Client    | framer-motion                 |
-| FloatingParticles               | Client    | framer-motion                 |
-| HexGrid                         | Server    | Static SVG                    |
-| NeuralNetwork                   | Client    | framer-motion                 |
-| **Shared Components**           |           |                               |
-| CartSidebar                     | Client    | Cart state, animations        |
-| AnimatedCounter                 | Client    | Number animation              |
-| TypingEffect                    | Client    | Text animation                |
+1. **All interactive sections will be Client Components** - This matches the original React application behavior
+2. **Preserve the original component structure** - No splitting or refactoring during initial migration
+3. **Copy components exactly** - Maintain all styling, animations, and logic without modification
+4. **Only the root layout will be a Server Component** - For Next.js App Router compatibility
 
-#### Benefits of This Approach
+**Component Rendering Strategy:**
 
-1. **Smaller JavaScript bundles** - Less code sent to client
-2. **Faster initial page load** - More content rendered on server
-3. **Better SEO** - Static content is crawlable
-4. **Easier testing** - Server components are simpler to test
-5. **Future-proof** - Easy to convert more to server when possible
+| Component | Rendering | Reason |
+| --- | --- | --- |
+| **Layout Components** |  |  |
+| RootLayout | Server | Static structure, required by Next.js App Router |
+| **Page Components** |  |  |
+| HomePage (entire page) | Client | Contains all state management and interactive elements |
+| **Effect Components** |  |  |
+| DataStreams | Client | framer-motion animations (inline in HomePage) |
+| FloatingParticles | Client | framer-motion animations (inline in HomePage) |
+| HexGrid | Client | SVG pattern (inline in HomePage) |
+| NeuralNetwork | Client | framer-motion animations (inline in HomePage) |
+| AnimatedCounter | Client | useState, useEffect hooks (inline in HomePage) |
+| TypingEffect | Client | useState, useEffect hooks (inline in HomePage) |
+
+**Migration Rules:**
+
+1. ✅ Copy the entire `src/pages/Index.tsx` component to Next.js with minimal changes
+2. ✅ Add `"use client"` directive at the top of the page component
+3. ✅ Replace `react-router-dom` imports with `next/navigation`
+4. ✅ Replace `useTranslation` from `react-i18next` with `useTranslations` from `next-intl`
+5. ✅ Keep all inline components, styling, and animations exactly as they are
+6. ❌ Do NOT split components into separate files during initial migration
+7. ❌ Do NOT modify styling or animation logic
+8. ❌ Do NOT change component structure or hierarchy
+
+**Benefits of This Approach:**
+
+1. **Zero visual differences** - Exact copy ensures identical appearance
+2. **Faster migration** - No refactoring or restructuring needed
+3. **Lower risk** - Fewer changes mean fewer potential bugs
+4. **Easier verification** - Direct comparison with original is straightforward
+5. **Future optimization** - Can refactor later after verifying visual parity
 
 ## Components and Interfaces
 
