@@ -1,6 +1,7 @@
 import { motion } from "framer-motion";
 import { ArrowRight } from "lucide-react";
 import { Domain } from "@/data/domains";
+import { MarketplaceLogo } from "./MarketplaceLogo";
 
 interface DomainCardProps {
   domain: Domain;
@@ -82,31 +83,23 @@ export const DomainCard = ({ domain, index }: DomainCardProps) => {
               }`}
               whileHover={{ scale: 1.02 }}
             >
+
               <div className="flex items-center gap-3">
-                {/* Platform Branding - Simplified Chars for now */}
-                <div
-                  className={`w-8 h-8 rounded-lg flex items-center justify-center text-xs font-bold ${
-                    listing.platform === "Atom"
-                      ? "bg-indigo-500/20 text-indigo-400"
-                      : listing.platform === "Sedo"
-                        ? "bg-orange-500/20 text-orange-400"
-                        : listing.platform === "Afternic"
-                          ? "bg-blue-500/20 text-blue-400"
-                          : "bg-gray-500/20 text-gray-400"
-                  }`}
-                >
-                  {listing.platform.substring(0, 2).toUpperCase()}
-                </div>
-                <div className="flex flex-col">
-                  <span className="text-xs font-bold text-muted-foreground uppercase tracking-wider">
-                    {listing.platform}
-                  </span>
-                  {isBestPrice && (
-                    <span className="text-[10px] text-green-400 font-bold tracking-tight">
-                      BEST PRICE
+                 <div className={`
+                    h-8 flex items-center px-2 rounded-lg
+                    ${listing.platform === 'Atom' ? 'text-indigo-400' : 
+                      listing.platform === 'Sedo' ? 'text-orange-400' :
+                      listing.platform === 'Afternic' ? 'text-blue-400' :
+                      'text-foreground'}
+                 `}>
+                    <MarketplaceLogo platform={listing.platform} className="w-24 h-8" />
+                 </div>
+                 
+                 {isBestPrice && (
+                    <span className="hidden sm:inline-block px-2 py-0.5 rounded text-[10px] font-bold bg-green-500/20 text-green-400 tracking-wider">
+                        BEST PRICE
                     </span>
                   )}
-                </div>
               </div>
 
               <div className="flex items-center gap-3">
