@@ -28,6 +28,9 @@ import {
 } from "lucide-react";
 import heroBg from "@/assets/hero-bg.jpg";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
+import { domains, Domain } from "@/data/domains";
+import { Link } from "react-router-dom";
+import { DomainCard } from "@/components/DomainCard";
 
 // Data Stream Effect
 const DataStreams = () => {
@@ -292,127 +295,7 @@ const TypingEffect = ({ texts }: { texts: string[] }) => {
   return <span className="holo-text cursor-blink">{displayText}</span>;
 };
 
-// Generate 180 domains for sale (3 pages × 60 domains)
-const generateDomainsForSale = () => {
-  const extensions = [
-    ".com",
-    ".io",
-    ".ai",
-    ".dev",
-    ".app",
-    ".tech",
-    ".net",
-    ".co",
-    ".xyz",
-    ".org",
-  ];
-  const prefixes = [
-    "tech",
-    "digital",
-    "cloud",
-    "ai",
-    "data",
-    "web",
-    "app",
-    "code",
-    "dev",
-    "net",
-    "smart",
-    "fast",
-    "secure",
-    "pro",
-    "max",
-    "ultra",
-    "prime",
-    "elite",
-    "vip",
-    "gold",
-    "blue",
-    "green",
-    "red",
-    "black",
-    "white",
-    "new",
-    "best",
-    "top",
-    "super",
-    "mega",
-    "start",
-    "build",
-    "create",
-    "make",
-    "get",
-    "buy",
-    "sell",
-    "trade",
-    "market",
-    "shop",
-    "learn",
-    "teach",
-    "study",
-    "work",
-    "play",
-    "game",
-    "fun",
-    "cool",
-    "hot",
-    "fire",
-    "star",
-    "moon",
-    "sun",
-    "earth",
-    "space",
-    "time",
-    "life",
-    "love",
-    "hope",
-    "dream",
-    "power",
-    "force",
-    "energy",
-    "light",
-    "dark",
-    "night",
-    "day",
-    "time",
-    "now",
-    "next",
-    "first",
-    "last",
-    "big",
-    "small",
-    "new",
-    "old",
-    "good",
-    "best",
-    "top",
-    "win",
-    "one",
-    "two",
-    "three",
-    "four",
-    "five",
-    "six",
-    "seven",
-    "eight",
-    "nine",
-    "ten",
-  ];
 
-  const domains: string[] = [];
-  let count = 0;
-
-  for (const prefix of prefixes) {
-    for (const ext of extensions) {
-      if (count >= 180) break;
-      domains.push(`${prefix}${ext}`);
-      count++;
-    }
-    if (count >= 180) break;
-  }
-
-  return domains;
-};
 
 const Index = () => {
   const { t } = useTranslation();
@@ -424,14 +307,13 @@ const Index = () => {
   const [showResults, setShowResults] = useState(false);
   const [cart, setCart] = useState<string[]>([]);
   const [isSearching, setIsSearching] = useState(false);
-  const [currentPage, setCurrentPage] = useState(1);
+  const activeDomains = domains.filter((d) => d.highlight).slice(0, 6);
 
-  const domainsForSale = generateDomainsForSale();
-  const domainsPerPage = 60;
-  const totalPages = Math.ceil(domainsForSale.length / domainsPerPage);
-  const startIndex = (currentPage - 1) * domainsPerPage;
-  const endIndex = startIndex + domainsPerPage;
-  const currentDomains = domainsForSale.slice(startIndex, endIndex);
+  const getLowestPrice = (listings: Domain["listings"]) => {
+      if (!listings || listings.length === 0) return 0;
+      return Math.min(...listings.map((l) => l.price));
+  };
+
 
   const navItems = [
     t("nav.domains"),
@@ -1175,160 +1057,25 @@ const Index = () => {
             </p>
           </motion.div>
 
-          {/* Domains Grid - 6 per row */}
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-6 gap-4 mb-12">
-            {currentDomains.map((domain, i) => (
-              <motion.div
-                key={domain}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.02 }}
-                whileHover={{ y: -5, scale: 1.02 }}
-                className="card-holo p-4 rounded-2xl relative group"
-              >
-                {/* Domain Name */}
-                <div className="mb-4">
-                  <h3 className="text-lg font-bold font-display holo-text text-center mb-4 break-all">
-                    {domain}
-                  </h3>
-                </div>
-
-                {/* Action Buttons */}
-                <div className="flex items-center justify-center gap-2 flex-wrap">
-                  {/* Afternic */}
-                  <motion.a
-                    href={`https://www.afternic.com/domain/${domain}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="relative group/btn"
-                    title="Buy on Afternic"
-                  >
-                    <div className="w-10 h-10 rounded-lg glass-ultra flex items-center justify-center border border-primary/20 hover:border-primary/50 transition-colors">
-                      <span className="text-xs font-bold text-primary">AN</span>
-                    </div>
-                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-background/95 rounded text-xs whitespace-nowrap opacity-0 group-hover/btn:opacity-100 transition-opacity pointer-events-none">
-                      Afternic
-                    </div>
-                  </motion.a>
-
-                  {/* Spaceship */}
-                  <motion.a
-                    href={`https://spaceship.com/buy/${domain}`}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="relative group/btn"
-                    title="View on Spaceship"
-                  >
-                    <div className="w-10 h-10 rounded-lg glass-ultra flex items-center justify-center border border-primary/20 hover:border-primary/50 transition-colors">
-                      <span className="text-xs font-bold text-primary">SS</span>
-                    </div>
-                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-background/95 rounded text-xs whitespace-nowrap opacity-0 group-hover/btn:opacity-100 transition-opacity pointer-events-none">
-                      Spaceship
-                    </div>
-                  </motion.a>
-
-                  {/* Buy Direct */}
-                  <motion.a
-                    href={`mailto:sales@domainput.com?subject=Buy Domain: ${domain}&body=I would like to purchase the domain: ${domain}`}
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="relative group/btn"
-                    title="Buy Direct"
-                  >
-                    <div className="w-10 h-10 rounded-lg glass-ultra flex items-center justify-center border border-primary/20 hover:border-primary/50 transition-colors">
-                      <ShoppingBag className="w-4 h-4 text-primary" />
-                    </div>
-                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-background/95 rounded text-xs whitespace-nowrap opacity-0 group-hover/btn:opacity-100 transition-opacity pointer-events-none">
-                      Buy Direct
-                    </div>
-                  </motion.a>
-
-                  {/* Make Offer / Contact */}
-                  <motion.button
-                    onClick={() => navigate(`/contact?domain=${domain}`)}
-                    whileHover={{ scale: 1.1 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="relative group/btn"
-                    title="Make Offer / Contact"
-                  >
-                    <div className="w-10 h-10 rounded-lg glass-ultra flex items-center justify-center border border-primary/20 hover:border-primary/50 transition-colors">
-                      <MessageCircle className="w-4 h-4 text-primary" />
-                    </div>
-                    <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 px-2 py-1 bg-background/95 rounded text-xs whitespace-nowrap opacity-0 group-hover/btn:opacity-100 transition-opacity pointer-events-none">
-                      Make Offer
-                    </div>
-                  </motion.button>
-                </div>
-              </motion.div>
+          {/* Domains Grid - Featured Only */}
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 gap-8 mb-12">
+            {activeDomains.map((domain, i) => (
+              <DomainCard key={domain.name} domain={domain} index={i} />
             ))}
           </div>
 
-          {/* Pagination */}
-          {totalPages > 1 && (
-            <div className="flex items-center justify-center gap-4 mt-12">
-              <motion.button
-                onClick={() => setCurrentPage((prev) => Math.max(1, prev - 1))}
-                disabled={currentPage === 1}
-                whileHover={{ scale: currentPage > 1 ? 1.05 : 1 }}
-                whileTap={{ scale: currentPage > 1 ? 0.95 : 1 }}
-                className={`p-3 rounded-xl glass-ultra flex items-center gap-2 ${
-                  currentPage === 1
-                    ? "opacity-50 cursor-not-allowed"
-                    : "hover:border-primary/50"
-                } transition-colors`}
-              >
-                <ChevronLeft className="w-5 h-5" />
-                <span className="font-display text-sm">Previous</span>
-              </motion.button>
-
-              <div className="flex items-center gap-2">
-                {Array.from({ length: totalPages }, (_, i) => i + 1).map(
-                  (page) => (
-                    <motion.button
-                      key={page}
-                      onClick={() => setCurrentPage(page)}
-                      whileHover={{ scale: 1.1 }}
-                      whileTap={{ scale: 0.95 }}
-                      className={`w-10 h-10 rounded-xl font-display text-sm transition-all ${
-                        currentPage === page
-                          ? "btn-neon-ultra text-primary-foreground"
-                          : "glass-ultra hover:border-primary/50"
-                      }`}
-                    >
-                      {page}
-                    </motion.button>
-                  ),
-                )}
-              </div>
-
-              <motion.button
-                onClick={() =>
-                  setCurrentPage((prev) => Math.min(totalPages, prev + 1))
-                }
-                disabled={currentPage === totalPages}
-                whileHover={{ scale: currentPage < totalPages ? 1.05 : 1 }}
-                whileTap={{ scale: currentPage < totalPages ? 0.95 : 1 }}
-                className={`p-3 rounded-xl glass-ultra flex items-center gap-2 ${
-                  currentPage === totalPages
-                    ? "opacity-50 cursor-not-allowed"
-                    : "hover:border-primary/50"
-                } transition-colors`}
-              >
-                <span className="font-display text-sm">Next</span>
-                <ChevronRight className="w-5 h-5" />
-              </motion.button>
-            </div>
-          )}
-
-          <div className="text-center mt-8 text-sm text-muted-foreground">
-            Showing {startIndex + 1}-{Math.min(endIndex, domainsForSale.length)}{" "}
-            of {domainsForSale.length} domains
+          <div className="flex justify-center mt-12">
+            <Link to="/portfolio">
+                <motion.button
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="btn-neon-ultra px-10 py-4 rounded-xl text-primary-foreground font-bold font-display tracking-widest flex items-center gap-3"
+                >
+                    VIEW FULL PORTFOLIO <ArrowRight className="w-5 h-5" />
+                </motion.button>
+            </Link>
           </div>
+
         </div>
       </section>
 
