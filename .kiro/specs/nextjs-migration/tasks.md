@@ -6,7 +6,7 @@ This implementation plan covers the migration of the Domainput landing page from
 
 ## Tasks
 
-- [ ] 1. Cleanup current project
+- [x] 1. Cleanup current project
   - Identify and remove unused UI components from `src/components/ui/`
   - Keep only components that are actively imported
   - _Requirements: 1.1, 1.2, 1.3_
@@ -76,7 +76,7 @@ This implementation plan covers the migration of the Domainput landing page from
   - [ ] 7.1 Create useCart hook
     - Implement cart state management in `hooks/use-cart.ts`
     - _Requirements: 5.4, 10.4_
-  - [ ]\* 7.2 Write property tests for useCart hook
+  - [ ] 7.2 Write property tests for useCart hook
     - **Property 2: Cart Addition Preserves Domain**
     - **Property 3: Cart Removal Removes Only Target Domain**
     - **Validates: Requirements 5.4**
@@ -86,7 +86,7 @@ This implementation plan covers the migration of the Domainput landing page from
   - [ ] 7.4 Create usePagination hook
     - Implement pagination logic in `hooks/use-pagination.ts`
     - _Requirements: 3.6, 10.4_
-  - [ ]\* 7.5 Write property tests for usePagination hook
+  - [ ] 7.5 Write property tests for usePagination hook
     - **Property 5: Pagination Produces Correct Slices**
     - **Validates: Requirements 3.6**
 
@@ -97,7 +97,7 @@ This implementation plan covers the migration of the Domainput landing page from
   - [ ] 8.2 Create domain utilities
     - Create `lib/domain.ts` with domain validation and generation helpers
     - _Requirements: 10.5_
-  - [ ]\* 8.3 Write property tests for domain utilities
+  - [ ] 8.3 Write property tests for domain utilities
     - **Property 6: Domain Generation Produces Valid Domains**
     - **Validates: Requirements 3.6**
 
@@ -164,7 +164,7 @@ This implementation plan covers the migration of the Domainput landing page from
     - Implement `components/sections/hero-section.tsx` as Server wrapper
     - Create SearchBar, SearchResults, ExtensionPills as Client Components
     - _Requirements: 3.2, 5.1, 5.2, 5.3, 7.3, 7.8_
-  - [ ]\* 14.2 Write property tests for search results
+  - [ ] 14.2 Write property tests for search results
     - **Property 1: Search Results Contain Valid Domain Data**
     - **Validates: Requirements 5.2, 5.3**
   - [ ] 14.3 Create StatsSection
@@ -230,7 +230,7 @@ This implementation plan covers the migration of the Domainput landing page from
   - [ ] 19.3 Verify i18n works
     - Test language switching functionality
     - _Requirements: 6.1, 6.2, 6.3_
-  - [ ]\* 19.4 Write property tests for translations
+  - [ ] 19.4 Write property tests for translations
     - **Property 4: Translation Keys Resolve to Non-Empty Strings**
     - **Validates: Requirements 6.3**
 
@@ -241,7 +241,6 @@ This implementation plan covers the migration of the Domainput landing page from
 
 ## Notes
 
-- Tasks marked with `*` are optional and can be skipped for faster MVP
 - Each task references specific requirements for traceability
 - Checkpoints ensure incremental validation
 - Property tests validate universal correctness properties
