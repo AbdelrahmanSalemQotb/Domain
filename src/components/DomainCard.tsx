@@ -26,7 +26,7 @@ export const DomainCard = ({ domain, index }: DomainCardProps) => {
       className="card-holo p-0 rounded-2xl relative group overflow-hidden flex flex-col h-full bg-card/40 backdrop-blur-xl border-white/5"
     >
       {/* Image or Fallback Header */}
-      <div className="relative h-48 w-full overflow-hidden shrink-0">
+      <div className="relative h-40 md:h-48 w-full overflow-hidden shrink-0">
         {domain.image ? (
           <>
             <img
@@ -55,7 +55,7 @@ export const DomainCard = ({ domain, index }: DomainCardProps) => {
 
         {/* Domain Name Overlay */}
         <div className="absolute bottom-4 left-4 right-4">
-          <h3 className="text-2xl font-black font-display text-white tracking-tight drop-shadow-lg mb-1 truncate">
+          <h3 className="text-xl md:text-2xl font-black font-display text-white tracking-tight drop-shadow-lg mb-1 truncate">
             {domain.name}
           </h3>
           {domain.description && (
@@ -104,7 +104,7 @@ export const DomainCard = ({ domain, index }: DomainCardProps) => {
 
               <div className="flex items-center gap-3">
                 <span
-                  className={`font-display font-bold text-lg ${isBestPrice ? "text-white" : "text-muted-foreground"}`}
+                  className={`font-display font-bold text-base md:text-lg ${isBestPrice ? "text-white" : "text-muted-foreground"}`}
                 >
                   ${listing.price.toLocaleString()}
                 </span>

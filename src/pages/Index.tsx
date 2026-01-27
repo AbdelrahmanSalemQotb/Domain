@@ -601,7 +601,7 @@ const Index = () => {
               animate={{ opacity: [1, 0.3, 1] }}
               transition={{ duration: 1, repeat: Infinity }}
             />
-            <span className="cyber-tag px-3 py-1 rounded-full">
+            <span className="cyber-tag px-3 py-1 rounded-full text-xs md:text-sm">
               {t("hero.version")}
             </span>
           </motion.div>
@@ -613,7 +613,7 @@ const Index = () => {
             transition={{ duration: 1, delay: 0.3 }}
             className="mb-8"
           >
-            <h1 className="text-4xl md:text-6xl lg:text-8xl font-bold font-display tracking-tight mb-4 break-words">
+            <h1 className="text-3xl md:text-6xl lg:text-8xl font-bold font-display tracking-tight mb-4 break-words leading-tight">
               <span className="text-foreground block">{t("hero.claim")}</span>
               <span className="holo-text block">{t("hero.theFuture")}</span>
             </h1>
@@ -624,7 +624,7 @@ const Index = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 1, delay: 0.6 }}
-            className="text-xl md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-14 font-light"
+            className="text-base md:text-2xl text-muted-foreground max-w-3xl mx-auto mb-10 md:mb-14 font-light px-4"
           >
             {t("hero.subtitle").split("{{text}}")[0]}{" "}
             <TypingEffect texts={typingTexts} />{" "}
@@ -642,7 +642,7 @@ const Index = () => {
               <motion.button
                 key={tab}
                 onClick={() => setActiveTab(tab as "register" | "transfer")}
-                className={`px-10 py-4 rounded-xl md:rounded-full text-sm font-bold uppercase tracking-[0.2em] transition-all font-display w-full md:w-auto ${
+                className={`px-6 py-3 md:px-10 md:py-4 rounded-xl md:rounded-full text-xs md:text-sm font-bold uppercase tracking-[0.2em] transition-all font-display w-full md:w-auto ${
                   activeTab === tab
                     ? "btn-neon-ultra text-primary-foreground"
                     : "text-muted-foreground hover:text-foreground"
@@ -662,8 +662,8 @@ const Index = () => {
             transition={{ duration: 1, delay: 1 }}
             className="max-w-4xl mx-auto"
           >
-            <div className="search-ultra rounded-3xl p-3 flex items-center gap-4">
-              <div className="flex-1 flex items-center gap-4 px-6">
+            <div className="search-ultra rounded-2xl md:rounded-3xl p-2 md:p-3 flex flex-col md:flex-row items-center gap-3 md:gap-4">
+              <div className="w-full md:flex-1 flex items-center gap-3 md:gap-4 px-4 md:px-6 py-2 md:py-0">
                 <motion.div
                   animate={{ rotate: isSearching ? 360 : 0 }}
                   transition={{
@@ -680,7 +680,7 @@ const Index = () => {
                   onChange={(e) => setSearchQuery(e.target.value)}
                   onKeyDown={(e) => e.key === "Enter" && handleSearch()}
                   placeholder={t("hero.searchPlaceholder")}
-                  className="w-full bg-transparent border-none outline-none text-foreground placeholder:text-muted-foreground text-xl font-light tracking-wide"
+                  className="w-full bg-transparent border-none outline-none text-foreground placeholder:text-muted-foreground text-lg md:text-xl font-light tracking-wide py-2 md:py-0"
                 />
               </div>
               <motion.button
@@ -688,7 +688,7 @@ const Index = () => {
                 whileTap={{ scale: 0.98 }}
                 onClick={handleSearch}
                 disabled={isSearching}
-                className="btn-neon-ultra px-12 py-5 rounded-2xl text-primary-foreground font-bold flex items-center gap-3 disabled:opacity-70 relative overflow-hidden"
+                className="w-full md:w-auto btn-neon-ultra px-6 py-4 md:px-12 md:py-5 rounded-xl md:rounded-2xl text-primary-foreground font-bold flex items-center justify-center gap-3 disabled:opacity-70 relative overflow-hidden"
               >
                 {isSearching ? (
                   <motion.div className="flex items-center gap-3">
