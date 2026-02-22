@@ -45,7 +45,7 @@ export const HeroSection = () => {
     Math.min(...domain.listings.map((l) => l.price));
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center pt-24 pb-32 cyber-grid overflow-hidden">
+    <section className="relative min-h-screen flex items-center justify-center pt-20 pb-16 cyber-grid overflow-hidden">
       {/* Background */}
       <div
         className="absolute inset-0 bg-cover bg-center opacity-30"
@@ -62,7 +62,7 @@ export const HeroSection = () => {
           initial={{ opacity: 0, scale: 0.8 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 1 }}
-          className="inline-flex items-center gap-4 glass-ultra px-6 py-3 rounded-full mb-10"
+          className="inline-flex items-center gap-4 glass-ultra px-6 py-3 rounded-full mb-6"
         >
           <motion.div
             className="ai-pulse"
@@ -89,9 +89,9 @@ export const HeroSection = () => {
           initial={{ opacity: 0, y: 50 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.3 }}
-          className="mb-8"
+          className="mb-4"
         >
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold font-display tracking-tight mb-4 leading-tight">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-bold font-display tracking-tight mb-2 leading-tight">
             <span className="text-foreground block">{t("hero.claim")}</span>
             <span className="holo-text block">{t("hero.theFuture")}</span>
           </h1>
@@ -102,9 +102,9 @@ export const HeroSection = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ duration: 1, delay: 0.6 }}
-          className="max-w-3xl mx-auto mb-10 md:mb-14 px-4"
+          className="max-w-3xl mx-auto mb-8 md:mb-10 px-4"
         >
-          <p className="text-base md:text-2xl text-muted-foreground font-light">
+          <p className="text-base md:text-xl text-muted-foreground font-light">
             <span className="block">
               {t("hero.subtitle").split("{{text}}")[0]}
               <TypingEffect texts={typingTexts} />
@@ -292,7 +292,7 @@ export const HeroSection = () => {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 2 }}
-            className="mt-12 md:mt-16"
+            className="mt-8 md:mt-10"
           >
             <motion.div
               animate={{ y: [0, 15, 0] }}
