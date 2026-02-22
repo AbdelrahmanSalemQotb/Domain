@@ -2,6 +2,7 @@ import { useState } from "react";
 import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { Menu } from "lucide-react";
+import { Link } from "react-router-dom";
 import { LanguageSwitcher } from "@/components/LanguageSwitcher";
 import { MobileMenu } from "@/components/MobileMenu";
 
@@ -28,29 +29,31 @@ export const NavBar = () => {
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             {/* Logo */}
-            <motion.div
-              className="flex items-center gap-3"
-              whileHover={{ scale: 1.05 }}
-            >
+            <Link to="/">
               <motion.div
-                className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-600 to-blue-500 flex items-center justify-center relative overflow-hidden shadow-lg"
-                whileHover={{ boxShadow: "0 0 30px hsl(210 100% 50% / 0.6)" }}
+                className="flex items-center gap-3"
+                whileHover={{ scale: 1.05 }}
               >
-                <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent"></div>
-                <span className="text-3xl font-black text-white relative z-10 tracking-tight">
-                  D
-                </span>
-                <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/30"></div>
+                <motion.div
+                  className="w-14 h-14 rounded-2xl bg-gradient-to-br from-blue-600 to-blue-500 flex items-center justify-center relative overflow-hidden shadow-lg"
+                  whileHover={{ boxShadow: "0 0 30px hsl(210 100% 50% / 0.6)" }}
+                >
+                  <div className="absolute inset-0 bg-gradient-to-br from-white/20 to-transparent"></div>
+                  <span className="text-3xl font-black text-white relative z-10 tracking-tight">
+                    D
+                  </span>
+                  <div className="absolute bottom-0 left-0 right-0 h-1 bg-white/30"></div>
+                </motion.div>
+                <div className="flex flex-col">
+                  <span className="text-xl font-bold font-display text-foreground tracking-wide">
+                    DOMAINPUT
+                  </span>
+                  <span className="text-[10px] text-muted-foreground tracking-wider">
+                    AI DOMAIN ENGINE
+                  </span>
+                </div>
               </motion.div>
-              <div className="flex flex-col">
-                <span className="text-xl font-bold font-display text-foreground tracking-wide">
-                  DOMAINPUT
-                </span>
-                <span className="text-[10px] text-muted-foreground tracking-wider">
-                  AI DOMAIN ENGINE
-                </span>
-              </div>
-            </motion.div>
+            </Link>
 
             {/* Nav Links */}
             <div className="hidden lg:flex items-center gap-8">

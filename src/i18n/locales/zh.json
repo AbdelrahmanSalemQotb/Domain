@@ -12,7 +12,8 @@
     "version": "v2.0.26",
     "claim": "声明",
     "theFuture": "未来",
-    "subtitle": "通过我们的量子驱动AI域名智能发现{{text}}。",
+    "subtitle": "通过我们的量子驱动发现{{text}}",
+    "subtitleLine2": "AI域名智能。",
     "typingTexts": {
       "text1": "您的完美域名",
       "text2": "您的数字身份",
@@ -124,5 +125,3 @@
     "cookies": "Cookie"
   }
 }
-
-

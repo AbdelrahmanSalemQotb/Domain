@@ -12,7 +12,8 @@
     "version": "v2.0.26",
     "claim": "ANSPRUCH",
     "theFuture": "DIE ZUKUNFT",
-    "subtitle": "Entdecken Sie {{text}} mit unserer quantenbetriebenen KI-Domänenintelligenz.",
+    "subtitle": "Entdecken Sie {{text}} mit unserer quantenbetriebenen",
+    "subtitleLine2": "KI-Domänenintelligenz.",
     "typingTexts": {
       "text1": "Ihre perfekte Domain",
       "text2": "Ihre digitale Identität",
@@ -124,5 +125,3 @@
     "cookies": "Cookies"
   }
 }
-
-

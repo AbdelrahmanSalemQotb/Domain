@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import { useTranslation } from "react-i18next";
 import { Sparkles, Rocket } from "lucide-react";
 import { NeuralNetwork } from "@/components/effects/SvgBackgrounds";
+import { Link } from "react-router-dom";
 
 export const CTASection = () => {
   const { t } = useTranslation();
@@ -51,13 +52,15 @@ export const CTASection = () => {
               <span className="relative z-10">{t("nav.initialize")}</span>
               <Sparkles className="w-6 h-6 relative z-10" />
             </motion.button>
-            <motion.button
-              whileHover={{ scale: 1.05, y: -3 }}
-              whileTap={{ scale: 0.95 }}
-              className="glass-ultra px-14 py-6 rounded-2xl font-bold text-foreground font-display tracking-widest hover:border-primary/50 transition-colors"
-            >
-              {t("cta.contactTeam")}
-            </motion.button>
+            <Link to="/contact">
+              <motion.button
+                whileHover={{ scale: 1.05, y: -3 }}
+                whileTap={{ scale: 0.95 }}
+                className="glass-ultra px-14 py-6 rounded-2xl font-bold text-foreground font-display tracking-widest hover:border-primary/50 transition-colors"
+              >
+                {t("cta.contactTeam")}
+              </motion.button>
+            </Link>
           </div>
         </motion.div>
       </div>

@@ -8,12 +8,12 @@ export const StatsSection = () => {
 
   const stats = [
     {
-      value: 2500000,
+      value: 2.5,
       label: t("stats.domainsIndexed"),
-      suffix: "+",
+      suffix: "M+",
       icon: Globe,
     },
-    { value: 150000, label: t("stats.aiPredictions"), suffix: "", icon: Brain },
+    { value: 150, label: t("stats.aiPredictions"), suffix: "K", icon: Brain },
     { value: 99.999, label: t("stats.uptimeSLA"), suffix: "%", icon: Radio },
     { value: 500, label: t("stats.edgeLocations"), suffix: "+", icon: Wifi },
   ];

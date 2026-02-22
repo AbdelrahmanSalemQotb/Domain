@@ -23,7 +23,7 @@ export const StatCard = ({
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
       transition={{ delay: index * 0.15 }}
-      className="text-center glass-ultra p-8 rounded-2xl"
+      className="text-center glass-ultra p-6 md:p-8 rounded-2xl overflow-visible"
     >
       <motion.div
         className="w-14 h-14 mx-auto mb-4 rounded-xl bg-primary/10 flex items-center justify-center"
@@ -31,7 +31,7 @@ export const StatCard = ({
       >
         <Icon className="w-7 h-7 text-primary" />
       </motion.div>
-      <p className="stat-value-ultra text-4xl md:text-5xl font-bold mb-2">
+      <p className="stat-value-ultra text-3xl md:text-4xl font-bold mb-2 whitespace-nowrap overflow-visible">
         <AnimatedCounter
           value={value}
           suffix={suffix}

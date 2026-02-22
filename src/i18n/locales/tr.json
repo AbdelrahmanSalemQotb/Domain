@@ -12,7 +12,8 @@
     "version": "v2.0.26",
     "claim": "CLAIM",
     "theFuture": "THE FUTURE",
-    "subtitle": "Discover {{text}} with our quantum-powered AI domain intelligence.",
+    "subtitle": "Discover {{text}} with our quantum-powered",
+    "subtitleLine2": "AI domain intelligence.",
     "typingTexts": {
       "text1": "your perfect domain",
       "text2": "your digital identity",
@@ -124,4 +125,3 @@
     "cookies": "Cookies"
   }
 }
-

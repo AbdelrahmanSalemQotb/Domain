@@ -67,20 +67,34 @@ export const MobileMenu = ({ isOpen, onClose, items }: MobileMenuProps) => {
                   {item}
                 </motion.a>
               ))}
-              
+
               <motion.div
-                 initial={{ opacity: 0, x: 20 }}
-                 animate={{ opacity: 1, x: 0 }}
-                 transition={{ delay: items.length * 0.1 }}
-                 className="mt-4"
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: items.length * 0.1 }}
+                className="mt-4"
               >
-                   <Link 
-                      to="/portfolio" 
-                      className="text-lg font-bold text-foreground hover:text-primary transition-colors py-2 block"
-                      onClick={onClose}
-                   >
-                      Portfolio
-                   </Link>
+                <Link
+                  to="/portfolio"
+                  className="text-lg font-bold text-foreground hover:text-primary transition-colors py-2 block"
+                  onClick={onClose}
+                >
+                  Portfolio
+                </Link>
+              </motion.div>
+
+              <motion.div
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                transition={{ delay: (items.length + 1) * 0.1 }}
+              >
+                <Link
+                  to="/contact"
+                  className="text-lg font-bold text-foreground hover:text-primary transition-colors py-2 block"
+                  onClick={onClose}
+                >
+                  Contact Us
+                </Link>
               </motion.div>
             </div>
           </motion.div>

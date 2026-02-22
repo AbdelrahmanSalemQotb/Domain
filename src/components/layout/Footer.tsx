@@ -1,4 +1,5 @@
 import { useTranslation } from "react-i18next";
+import { Link } from "react-router-dom";
 
 const Footer = () => {
   const { t } = useTranslation();
@@ -36,28 +37,28 @@ const Footer = () => {
             {
               title: t("footer.products"),
               links: [
-                t("footer.domains"),
-                t("footer.aiEngine"),
-                t("footer.hosting"),
-                t("footer.ssl"),
+                { label: t("footer.domains"), href: "#" },
+                { label: t("footer.aiEngine"), href: "#" },
+                { label: t("footer.hosting"), href: "#" },
+                { label: t("footer.ssl"), href: "#" },
               ],
             },
             {
               title: t("footer.company"),
               links: [
-                t("footer.about"),
-                t("footer.careers"),
-                t("footer.press"),
-                t("footer.partners"),
+                { label: t("footer.about"), href: "#" },
+                { label: t("footer.careers"), href: "#" },
+                { label: t("footer.press"), href: "#" },
+                { label: t("footer.partners"), href: "#" },
               ],
             },
             {
               title: t("footer.support"),
               links: [
-                t("footer.docs"),
-                t("footer.api"),
-                t("footer.status"),
-                t("footer.contact"),
+                { label: t("footer.docs"), href: "#" },
+                { label: t("footer.api"), href: "#" },
+                { label: t("footer.status"), href: "#" },
+                { label: t("footer.contact"), href: "/contact", isRoute: true },
               ],
             },
           ].map((section) => (
@@ -67,13 +68,22 @@ const Footer = () => {
               </h4>
               <ul className="space-y-4">
                 {section.links.map((link) => (
-                  <li key={link}>
-                    <a
-                      href="#"
-                      className="text-muted-foreground hover:text-primary transition-colors text-sm tracking-wide"
-                    >
-                      {link}
-                    </a>
+                  <li key={link.label}>
+                    {link.isRoute ? (
+                      <Link
+                        to={link.href}
+                        className="text-muted-foreground hover:text-primary transition-colors text-sm tracking-wide"
+                      >
+                        {link.label}
+                      </Link>
+                    ) : (
+                      <a
+                        href={link.href}
+                        className="text-muted-foreground hover:text-primary transition-colors text-sm tracking-wide"
+                      >
+                        {link.label}
+                      </a>
+                    )}
                   </li>
                 ))}
               </ul>

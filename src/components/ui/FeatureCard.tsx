@@ -27,19 +27,19 @@ export const FeatureCard = ({
       whileHover={{ y: -15, scale: 1.02 }}
       className="card-holo p-8 rounded-3xl group"
     >
-      <div className="flex items-start justify-between mb-8">
+      <div className="flex items-center gap-4 mb-6">
         <motion.div
-          className={`w-16 h-16 rounded-2xl bg-linear-to-br ${color} flex items-center justify-center shadow-lg`}
+          className={`w-14 h-14 rounded-2xl bg-linear-to-br ${color} flex items-center justify-center shadow-lg shrink-0`}
           whileHover={{ rotate: 360, scale: 1.1 }}
           transition={{ duration: 0.6 }}
         >
-          <Icon className="w-8 h-8 text-white" />
+          <Icon className="w-7 h-7 text-white" />
         </motion.div>
-        <span className="font-display text-3xl font-bold holo-text">
+        <span className="font-display text-2xl font-bold holo-text">
           {stats}
         </span>
       </div>
-      <h3 className="text-2xl font-bold text-foreground mb-4 font-display tracking-wide">
+      <h3 className="text-xl font-bold text-foreground mb-3 font-display tracking-wide">
         {title}
       </h3>
       <p className="text-muted-foreground leading-relaxed">{description}</p>

@@ -31,7 +31,7 @@ export const FilterBar = ({
         </div>
 
         {/* Category Filter Toggles */}
-        <div className="flex items-center gap-4 w-full md:w-auto overflow-x-auto pb-2 md:pb-0 [&::-webkit-scrollbar]:hidden [-ms-overflow-style:'none'] [scrollbar-width:'none']">
+        <div className="flex items-center gap-3 w-full md:w-auto flex-wrap">
           {categories.map((cat) => (
             <button
               key={cat}
