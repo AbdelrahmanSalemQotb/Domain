@@ -110,7 +110,7 @@
     - NavBar and Footer handled by UserLayout in App.tsx
     - _Requirements: 6.1, 6.3_
 
-- [~] 7. Checkpoint — التأكد من أن الصفحة الرئيسية تعمل
+- [ ] 7. Checkpoint — التأكد من أن الصفحة الرئيسية تعمل
   - Ensure all tests pass, ask the user if questions arise.
   - Run `tsc --noEmit` to verify no type errors
 
@@ -155,7 +155,7 @@
     - **Property 3: FilterBar search filtering is consistent**
     - **Validates: Requirements 7.6**
 
-- [~] 11. Final checkpoint — التأكد من أن كل شيء يعمل
+- [ ] 11. Final checkpoint — التأكد من أن كل شيء يعمل
   - Ensure all tests pass, ask the user if questions arise.
   - Run `tsc --noEmit` and `vite build` to verify the full build succeeds
 
